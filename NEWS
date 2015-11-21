@@ -1,0 +1,23 @@
+NEWS file for package baseline
+Collection of baseline correction algorithms, along with a framework and a GUI for optimising baseline algorithm parameters.
+Kristian Hovde Liland and Bjørn-Helge Mevik, Norway
+
+##### Version 1.2-0
+Date: 11 March 2015
+>> Added Shirley background correction for X-ray Photoelectron Spectroscopy.
+
+##### Version 1.1-2
+Date: 02 May 2013
+>> Fixed bug in environment setting (tip from Tom Wenseleers).
+
+##### Version 1.1-1
+Date: 27 March 2013
+>> Fixed bug concerning naming of methods in the user interfaces (tip from Tom Wenseleers).
+>> Minor changes to conform to new rules concerning assigning variables to the global environment.
+
+##### Version 1.1-0
+Date: 24 June 2012
+>> Open up for user extensions of baseline algorithms for plotting and optimisation through different
+use of the list baselineAlgorithms.
+>> Added list baselineAlgorithmsGUI for setting up graphical user interface with baseline algorithms
+included in the baselineAglrithms list.

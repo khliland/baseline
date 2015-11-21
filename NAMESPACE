@@ -1,0 +1,27 @@
+importFrom("graphics", "axTicks", "axis", "box", "legend", "lines", "matplot", "par", "plot", "rect", "text")
+importFrom("grDevices", "dev.cur", "dev.list", "dev.new", "dev.set", "gray")
+importFrom("methods", "new", "setGeneric")
+importFrom("stats", "approx", "dnorm", "fitted", "formula", "lowess", "median", "model.frame", "mvfft", "napredict", "predict", "residuals", "runmed", "sd", "var")
+import(SparseM)
+exportPattern("^[^\\.]") # Export all except .functions
+exportClassPattern("^[^\\.]") # Export all S4 classes # baseline, predictorTest, predictorResult, PLSRTest, ridgeRegressionTest, baselineAlg, baselineAlgTest, baselineAlgResult)
+exportMethods(	plot,         # Export all S4 methods
+				getSpectra,
+				getCorrected,
+				getBaseline,
+				getCall,
+				param,
+				qualMeas,
+				ind.min,
+				minQualMeas,
+				param.min,
+				qualMeasName,
+				paramName,
+				runTest,
+				name,
+				description,
+				funcName,
+				algorithm,
+				extraArgs,
+				qualMeas.ind.min,
+				param.ind.min)
