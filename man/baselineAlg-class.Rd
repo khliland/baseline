@@ -54,7 +54,7 @@ Objects can be created by calls of the form \code{new("baselineAlg", ...)}.
       the \code{param} slot}
   }
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \note{The goal is that the
   optimisation framework and the GUI code should get all information about
   available baseline algorithms through a list of \code{baselineAlg}

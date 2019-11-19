@@ -26,7 +26,7 @@ Class \code{\linkS4class{predictionTest}}, directly.
       the test}
   }
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   The base class \code{\linkS4class{predictionTest}}.  The
   \code{\link{runTest}} function.

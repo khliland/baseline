@@ -20,7 +20,11 @@ baseline(spectra, method = "irls", ...)
 \value{
   An object of class \code{\linkS4class{baseline}}.
 }
-
+\references{
+Kristian Hovde Liland, Trygve Almøy, Bjørn-Helge Mevik (2010), 
+Optimal Choice of Baseline Correction for Multivariate Calibration of Spectra, 
+Applied Spectroscopy 64, pp. 1007-1016.
+}
 \seealso{The functions implementing the baseline algorithms:
   \code{\link{baseline.als}}, \code{\link{baseline.fillPeaks}},
   \code{\link{baseline.irls}}, \code{\link{baseline.lowpass}},
@@ -28,9 +32,9 @@ baseline(spectra, method = "irls", ...)
   \code{\link{baseline.modpolyfit}},
   \code{\link{baseline.peakDetection}},
   \code{\link{baseline.rfbaseline}}, \code{\link{baseline.rollingBall}},
-  \code{\link{baseline.shirley}}
+  \code{\link{baseline.shirley}},  \code{\link{baseline.TAP}}
 }
-\author{ Kristian Hovde Liland and Bj�rn-Helge Mevik }
+\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
 \examples{
 # Load data
 data(milk)

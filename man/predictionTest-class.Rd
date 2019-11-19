@@ -13,7 +13,7 @@
 \section{Methods}{
 No methods defined with class "predictionTest" in the signature.
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{Subclasses \code{\linkS4class{PLSRTest}} and
   \code{\linkS4class{ridgeRegressionTest}}.
 }

@@ -67,7 +67,7 @@ qualMeasName(object)
   the subsets or minimum values of the \code{qualMeas} slot of the object as specified
   above. All other methods simply return the corresponding slot.
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 
 \seealso{
   Function \code{\link{runTest}}, classes

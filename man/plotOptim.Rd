@@ -24,6 +24,6 @@ plotOptim(results)
   or levels corresponding to the minimum when averaging over selected
   values of the regression parameter, e.g. selected components in PLSR.
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \keyword{ baseline }
 \keyword{ spectra }

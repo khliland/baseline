@@ -23,7 +23,7 @@ qualMeas.ind.min(object)
 \value{
   The corresponding slot
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   Class \code{\linkS4class{baselineAlgResult}}
 }

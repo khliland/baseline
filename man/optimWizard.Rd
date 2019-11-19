@@ -21,7 +21,7 @@ getOptimRes()
   \item{predictionTest}{ Custom prediction object (optional) }
   \item{cvsegments}{ Cross-validation segments (optional)}
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 \dontrun{
 # Computationally intensive

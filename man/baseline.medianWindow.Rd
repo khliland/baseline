@@ -1,6 +1,7 @@
 %%% $Id: baseline.medianWindow.Rd 193 2012-06-24 21:13:42Z kristl $
 \name{baseline.medianWindow}
 \alias{baseline.medianWindow}
+\alias{medianWindow}
 
 \title{ Median window }
 \description{
@@ -25,7 +26,7 @@ baseline.medianWindow(spectra, hwm, hws, end)
 }
 \references{ Mark S. Friedrichs:
   A model-free algorithm for the removal of baseline artifacts }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 data(milk)
 bc.medianWindow <- baseline(milk$spectra[1,, drop=FALSE], hwm=300,

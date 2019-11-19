@@ -40,7 +40,7 @@
     \item{qualMeasName}{\code{signature(object = "predictionResult")}: Extract the \code{qualMeasName} slot}
 	 }
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   Function \code{\link{runTest}}, class
   \code{\linkS4class{predictionTest}}, subclasses 

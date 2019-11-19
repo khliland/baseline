@@ -54,7 +54,7 @@ runTest(object, X, y, ...)
 \code{runTest} returns an object of class
 \code{\linkS4class{predictionResult}} or \code{\linkS4class{baselineAlgResult}}.
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   \code{\linkS4class{baselineAlgTest}},
   \code{\linkS4class{predictionTest}}, \code{\linkS4class{PLSRTest}},

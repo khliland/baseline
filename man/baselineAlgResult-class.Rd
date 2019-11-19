@@ -50,7 +50,7 @@ Objects are typically created by running \code{runTest} on a
       Extract the \code{qualMeasName} slot }
 	 }
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   Class \code{\linkS4class{baselineAlgTest}}, function \code{runTest}.
 }

@@ -53,7 +53,7 @@ custom.baseline(spectra, breaks, gaps, trans.win = NULL, just.plot = FALSE, meth
 \references{ Kristian Hovde Liland et al.:
 	Customized baseline correction
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 data(milk)
 spectrum1  <- milk$spectra[1,1:10000,drop=FALSE]

@@ -38,7 +38,7 @@ plotBaseline(x, y, specNo = 1, grid = FALSE, labels = 1:n, rev.x = FALSE,
   underlying work-horse function, and is not meant for interactive use.
 }
 \author{
-  Kristian Hovde Liland and Bjørn-Helge Mevik
+  Kristian Hovde Liland and BjÃ¸rn-Helge Mevik
 }
 \note{
   Because the argument list of any plot method must start with \code{x},

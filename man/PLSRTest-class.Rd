@@ -29,7 +29,7 @@ Class \code{\linkS4class{predictionTest}}, directly.
     \item{runTest}{\code{signature(object = "PLSRTest")}: Run the test}
   }
 }
-\author{Bjørn-Helge Mevik and Krisitan Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Krisitan Hovde Liland}
 \seealso{
   The base class \code{\linkS4class{predictionTest}}.  The
   \code{\link{runTest}} function.  The \code{\link[pls:mvr]{plsr}}

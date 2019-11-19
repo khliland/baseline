@@ -22,6 +22,15 @@ baseline <- function (spectra, method = "irls", ...) {
 	}
     method <- match.arg(method, names(bA))
     baseFunc <- funcName(bA[[method]])
+    
+    ## Strip AsIs
+    if(inherits(spectra,'AsIs')){
+      spectra <- unclass(spectra)
+    }
+    ## Check class
+    if(!inherits(spectra,'matrix')){
+      stop("'spectra' must be of class 'matrix'")
+    }
 
     ## Run baseline algorithm:
     res <- do.call(baseFunc, list(spectra, ...))

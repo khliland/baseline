@@ -2,6 +2,10 @@ NEWS file for package baseline
 Collection of baseline correction algorithms, along with a framework and a GUI for optimising baseline algorithm parameters.
 Kristian Hovde Liland and Bjørn-Helge Mevik, Norway
 
+##### Version 1.2-2
+Date: 04 November 2019
+>> Added TAP correction for baseline identification in kinetic anlaysis of derivative kinetic data. Converted package to UTF-8.
+
 ##### Version 1.2-0
 Date: 11 March 2015
 >> Added Shirley background correction for X-ray Photoelectron Spectroscopy.

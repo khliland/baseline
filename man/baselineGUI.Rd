@@ -22,7 +22,7 @@ baselineGUI(spectra, method='irls', labels, rev.x = FALSE)
   and a corresponding backend like GTK+ or Tcl/Tk. The GUI was developed using GTK which
   is an external dependency in Windows ans OS X.
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 data(milk)
 \dontrun{

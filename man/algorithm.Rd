@@ -21,7 +21,7 @@ extraArgs(object)
 \value{
   The corresponding slot
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   \code{\linkS4class{baselineAlgTest}}
 }

@@ -1,6 +1,7 @@
 %%% $Id: baseline.modpolyfit.Rd 193 2012-06-24 21:13:42Z kristl $
 \name{baseline.modpolyfit}
 \alias{baseline.modpolyfit}
+\alias{modpolyfit}
 
 \title{ Modified polynomial fitting }
 \description{
@@ -27,7 +28,7 @@ baseline.modpolyfit(spectra, t, degree = 4, tol = 0.001, rep = 100)
 \references{ CHAD A. LIEBER and ANITA MAHADEVAN-JANSEN:
   Automated Method for Subtraction of Fluorescence from
   Biological Raman Spectra }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 data(milk)
 bc.modpolyfit <- baseline(milk$spectra[1,, drop=FALSE], method='modpolyfit', deg=6)

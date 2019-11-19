@@ -1,5 +1,7 @@
 \name{baseline.shirley}
 \alias{baseline.shirley}
+\alias{shirley}
+
 \title{Shirley Background Estimation}
 \description{
 Shirley Background correction for X-ray Photoelectron Spectroscopy.

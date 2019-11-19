@@ -36,7 +36,7 @@ Objects can be created by calls of the form \code{new("baselineAlgTest", ...)}.
       test.}
   }
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 \seealso{
   Classes \code{\linkS4class{baselineAlg}},
   \code{\linkS4class{baselineAlgResult}}.  Function \code{runTest}.

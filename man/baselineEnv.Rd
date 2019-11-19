@@ -29,7 +29,7 @@ putBaselineEnv(x, value)
   \code{\link{baseline.peakDetection}},
   \code{\link{baseline.rfbaseline}}, \code{\link{baseline.rollingBall}}
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 putBaselineEnv('fish', '<==x-<')
 getBaselineEnv('fish')

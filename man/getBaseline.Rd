@@ -25,7 +25,7 @@ getCall(object)
   object.  The other functions return a matrix with the original
   spectra, estimated baselines or corrected spectra.
 }
-\author{Bjørn-Helge Mevik and Kristian Hovde Liland}
+\author{BjÃ¸rn-Helge Mevik and Kristian Hovde Liland}
 
 \section{Warning}{In a future versoion, one of the slots might be
   removed from the class definition and calculated on the fly instead,

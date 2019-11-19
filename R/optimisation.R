@@ -283,18 +283,31 @@ baselineAlgorithms <- list(
                       incl.max = c(FALSE, FALSE)
                     )),
   shirley = new("baselineAlg",
-					name = "shirley",
-					description = "A shirley baseline correction algorithm",
-					funcName = "baseline.shirley",
-					param = data.frame(
-					  name = c("maxit", "err"), # maxit
-					  integer = c(FALSE, FALSE),
-					  min = c(1, 1e-8),
-					  incl.min = c(TRUE, TRUE),
-					  default = c(50, 1e-6),
-					  max = c(Inf, 1e-3),
-					  incl.max = c(FALSE, FALSE)
-					))
+                name = "shirley",
+                description = "A shirley baseline correction algorithm",
+                funcName = "baseline.shirley",
+                param = data.frame(
+                  name = c("maxit", "err"), # maxit
+                  integer = c(FALSE, FALSE),
+                  min = c(1, 1e-8),
+                  incl.min = c(TRUE, TRUE),
+                  default = c(50, 1e-6),
+                  max = c(Inf, 1e-3),
+                  incl.max = c(FALSE, FALSE)
+                )),
+  TAP = new("baselineAlg",
+                name = "TAP",
+                description = "Kintetic analysis of derivative data",
+                funcName = "baseline.TAP",
+                param = data.frame(
+                  name = c("interval", "tol"),
+                  integer = c(TRUE, FALSE),
+                  min = c(1, 1e-12),
+                  incl.min = c(TRUE, TRUE),
+                  default = c(15, 1e-3),
+                  max = c(Inf, 1),
+                  incl.max = c(FALSE, FALSE)
+                ))
   
 ) ## End of baselineAlgorithms <- list(
 

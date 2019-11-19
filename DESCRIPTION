@@ -1,15 +1,15 @@
-Encoding: latin1
+Encoding: UTF-8
 Package: baseline
 Type: Package
 Title: Baseline Correction of Spectra
-Version: 1.2-1
-Date: 2015-07-05
+Version: 1.2-3
+Date: 2019-11-12
 Authors@R: c(person("Kristian Hovde", "Liland", role = c("aut","cre"), email="kristian.liland@nmbu.no"), person("Bjørn-Helge", "Mevik", role=c("aut")), person("Roberto", "Canteri", role=c("ctb")))
 Maintainer: Kristian Hovde Liland <kristian.liland@nmbu.no>
 Description: Collection of baseline correction algorithms, along with a framework and a GUI for optimising baseline algorithm parameters. Typical use of the package is for removing background effects from spectra originating from various types of spectroscopy and spectrometry, possibly optimizing this with regard to regression or classification results. Correction methods include polynomial fitting, weighted local smoothers and many more.
 License: GPL-2
 Depends: R (>= 2.15)
-Imports: graphics, SparseM, grDevices, stats, methods
+Imports: graphics, SparseM, grDevices, stats, methods, limSolve
 Suggests: gWidgets, IDPmisc, lattice, pls, MASS
 LazyLoad: true
 LazyData: true

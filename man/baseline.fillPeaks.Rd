@@ -1,6 +1,7 @@
 %%% $Id: baseline.fillPeaks.Rd 193 2012-06-24 21:13:42Z kristl $
 \name{baseline.fillPeaks}
 \alias{baseline.fillPeaks}
+\alias{fillPeaks}
 
 \title{ Fill peaks }
 \description{
@@ -24,7 +25,9 @@ baseline.fillPeaks(spectra, lambda, hwi, it, int)
   \item{baseline }{Matrix of baselines corresponding to spectra \code{spectra}}
   \item{corrected }{Matrix of baseline corrected spectra}
 }
-\author{ Kristian Hovde Liland and Bjørn-Helge Mevik }
+\references{Kristian Hovde Liland, 4S Peak Filling - baseline estimation by iterative
+mean suppression, MethodsX 2015}
+\author{ Kristian Hovde Liland and BjÃ¸rn-Helge Mevik }
 \examples{
 data(milk)
 bc.fillPeaks <- baseline(milk$spectra[1,, drop=FALSE], lambda=6,

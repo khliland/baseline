@@ -19,8 +19,8 @@
 	in mixed samples of cow, goat, and ewe milk.
 }
 \references{
-  Kristian Hovde Liland, Bjørn-Helge Mevik, Elling-Olav Rukke, Trygve
-  Almøy, Morten Skaugen and Tomas Isaksson (2009)
+  Kristian Hovde Liland, BjÃ¸rn-Helge Mevik, Elling-Olav Rukke, Trygve
+  AlmÃ¸y, Morten Skaugen and Tomas Isaksson (2009)
   Quantitative whole spectrum analysis with MALDI-TOF MS, Part I:
   Measurement optimisation.
   \emph{Chemometrics and Intelligent Laboratory Systems}, \bold{96}(2),
