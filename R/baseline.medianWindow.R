@@ -1,6 +1,6 @@
 baseline.medianWindow <- function(spectra, hwm, hws, end=FALSE){
 ## Implementation and extention of Marks S. Friedrichs model-free algorithm
-## Coded by Kristian Hovde Liland and Bjørn-Helge Mevik
+## Coded by Kristian Hovde Liland and BjÃ¸rn-Helge Mevik
 ## $Id: baseline.medianWindow.R 170 2011-01-03 20:38:25Z bhm $
 #
 # INPUT:

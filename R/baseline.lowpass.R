@@ -1,7 +1,7 @@
 baseline.lowpass <- function(spectra, steep = 2, half = 5) {
 ## Low-pass filter based on fast fourier transform
 ## as presented by Atakan, Blass and Jennings
-## Coded by Kristian Hovde Liland and Bjørn-Helge Mevik
+## Coded by Kristian Hovde Liland and BjÃ¸rn-Helge Mevik
 ## $Id: baseline.lowpass.R 170 2011-01-03 20:38:25Z bhm $
 #
 # INPUT:

@@ -1,7 +1,7 @@
 ### modpolyfit_LM2003.R:  Implementation of Modified polyfit method; Lieber
 ### & Mahadevan-Jansen (2003)
 ### $Id: baseline.modpolyfit.R 90 2007-11-16 15:04:55Z kristl $
-### By Bjørn-Helge Mevik and Kristian Hovde Liland
+### By BjÃ¸rn-Helge Mevik and Kristian Hovde Liland
 
 baseline.modpolyfit <- function(spectra, t, degree = 4, tol = 1e-3, rep = 100) {
     ## Removing dimnames can save time and memory with long spectra:
