@@ -5,7 +5,7 @@
 \title{ Interactive plotting tool }
 \description{
   An interactive plotting tool for dynamic visualization of baselines and their effect
-  using the gWidgets package with GTK+ or Tcl/Tk.
+  using the gWidgets2 package with GTK+ or Tcl/Tk.
 }
 \usage{
 baselineGUI(spectra, method='irls', labels, rev.x = FALSE)
@@ -18,7 +18,7 @@ baselineGUI(spectra, method='irls', labels, rev.x = FALSE)
 }
 \details{
   Creates and updates a list containing current baseline and spectrum (baseline.result).
-  Make sure a gWidget implementation is available, e.g gWidgetsRGtk2 or gWidgetstcltk
+  Make sure a gWidget2 implementation is available, e.g gWidgets2RGtk2 or gWidgets2tcltk
   and a corresponding backend like GTK+ or Tcl/Tk. The GUI was developed using GTK which
   is an external dependency in Windows ans OS X.
 }

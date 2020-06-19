@@ -75,7 +75,7 @@ bc.fillPeaks <- baseline(milk$spectra[1,, drop=FALSE], lambda=6,
 	plot(bc.fillPeaks)
 }
 
-# If a suitable gWidgets implementation is installed, a 
+# If a suitable gWidgets2 implementation is installed, a 
 # graphical user interface is available for interactive
 # parameter adaption.
 \dontrun{
