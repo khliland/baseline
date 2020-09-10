@@ -2,8 +2,8 @@ Encoding: UTF-8
 Package: baseline
 Type: Package
 Title: Baseline Correction of Spectra
-Version: 1.3-0
-Date: 2020-05-10
+Version: 1.3-1
+Date: 2020-09-10
 Authors@R: c(person("Kristian Hovde", "Liland", role = c("aut","cre"), email="kristian.liland@nmbu.no"), person("Bjørn-Helge", "Mevik", role=c("aut")), person("Roberto", "Canteri", role=c("ctb")))
 Maintainer: Kristian Hovde Liland <kristian.liland@nmbu.no>
 Description: Collection of baseline correction algorithms, along with a framework and a Tcl/Tk enabled GUI for optimising baseline algorithm parameters. Typical use of the package is for removing background effects from spectra originating from various types of spectroscopy and spectrometry, possibly optimizing this with regard to regression or classification results. Correction methods include polynomial fitting, weighted local smoothers and many more.

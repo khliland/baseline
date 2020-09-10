@@ -267,7 +267,7 @@ baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
     ## --=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--
     ## Set up sliders according to chosen baseline correction method
     sVals <- list()
-    sliders <- resets <- tmps <- list()
+    sliders <- resets <- fields <- tmps <- tmpsIn <- list()
     iI <- 0
     
     createMethodSliders <- function(){
@@ -279,21 +279,26 @@ baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
       
       ## Collect values for sliders
       sVals <<- bAGUI[[method]]
-      sliders <<- resets <<- tmps <<- list()
+      sliders <<- resets <<- fields <<- tmps <<- tmpsIn <<- list()
       iI <<- dim(sVals)[1]
       for(i in 1:iI){
         tmps[[i]]    <<- gWidgets2::gframe(paste(sVals[i,6], " (", rownames(sVals)[i], ")", sep=""), container=remParam, horizontal=TRUE)
+        tmpsIn[[i]]    <<- gWidgets2::ggroup(container=tmps[[i]], horizontal=TRUE)
+        resets[[i]]  <<- gWidgets2::gbutton(text = "Reset", handler = function(h,...){
+          for(a in 1:iI) gWidgets2::svalue(sliders[[a]])<<-sVals[a,4]}, cont=tmpsIn[[i]], expand=FALSE)
         sliders[[i]] <<- gWidgets2::gslider(from=sVals[i,1], to=sVals[i,2], by=sVals[i,3], value=bAGUI[[method]]$current[i],
-                                            cont=tmps[[i]],
+                                            cont=tmpsIn[[i]],
                                             handler = function(h,...){ for(a in 1:iI){
                                               bAGUI[[method]]$current[a] <<- gWidgets2::svalue(sliders[[a]])
                                               bc <- getBaselineEnv("baseline.current")
                                               bc$parValues[a] <- gWidgets2::svalue(sliders[[a]])
-                                              putBaselineEnv("baseline.current",bc)}})
-        resets[[i]]  <<- gWidgets2::gbutton(text = "Reset", handler = function(h,...){
-          for(a in 1:iI) gWidgets2::svalue(sliders[[a]])<<-sVals[a,4]}, cont=tmps[[i]])
-        gWidgets2::add(tmps[[i]], sliders[[i]], expand=TRUE)
-        gWidgets2::add(tmps[[i]], resets[[i]], expand=FALSE)
+                                              putBaselineEnv("baseline.current",bc)
+                                              gWidgets2::svalue(fields[[a]]) <- gWidgets2::svalue(sliders[[a]])}}, expand=TRUE)
+        fields[[i]] <<- gWidgets2::glabel(text = sVals[i,4], cont=tmpsIn[[i]], expand=FALSE)
+        # gWidgets2::add(tmps[[i]], sliders[[i]], expand=TRUE)
+        # addSpring(tmpsIn[[i]])
+        # gWidgets2::add(tmps[[i]], fields[[i]], expand=FALSE)
+        # gWidgets2::add(tmps[[i]], resets[[i]], expand=FALSE)
       }
     }                                   # end of createMethodSliders
     
@@ -304,9 +309,6 @@ baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
     ##
     
     
-    ## Initialize spectrum chooser slider and method chooser
-    if(dim(Y)[1] > 1)
-      spectrumNo <- gWidgets2::gslider(from=1, to=dim(Y)[1], by=1, value=1, handler = function(h,...) specNo<<-gWidgets2::svalue(spectrumNo))
     if(exists("baselineAlgorithms",envir=.GlobalEnv)){
       bA <- get("baselineAlgorithms",envir=.GlobalEnv)
     } else {
@@ -323,10 +325,17 @@ baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
     
     ## Initialize window and main containers
     window <- gWidgets2::gwindow("Baseline correction", width=300)
+
+    ## Initialize spectrum chooser slider and method chooser
     superGroup2 <- gWidgets2::ggroup(horizontal=FALSE,container=window)
     if(dim(Y)[1] > 1){
       tmp <- gWidgets2::gframe("Spectrum number", container=superGroup2, horizontal=TRUE)
-      gWidgets2::add(tmp,spectrumNo, expand=TRUE)
+      tmpIn <- gWidgets2::ggroup(container=tmp)
+      spectrumNo <- gWidgets2::gslider(from=1, to=dim(Y)[1], by=1, value=1, handler = function(h,...){ 
+        specNo<<-gWidgets2::svalue(spectrumNo)
+        gWidgets2::svalue(spectrumNoField) <- specNo}, container=tmpIn, expand=TRUE)
+      spectrumNoField <- gWidgets2::glabel("1", container=tmpIn, expand=FALSE)
+      # gWidgets2::add(tmp, spectrumNo, expand=TRUE)
     }
     methodChooser <- gWidgets2::gcombobox(names,
                                           selected=which(GUI.names==method), handler = function(h,...){method <<- GUI.names[gWidgets2::svalue(methodChooser,index=TRUE)]; gWidgets2::delete(outerParam,remParam); createMethodSliders(); setZoom(); baseline.compute()},
@@ -336,7 +345,11 @@ baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
     Settings <- gWidgets2::ggroup(container=superGroup2, horizontal=FALSE)
     outerParam <- gWidgets2::ggroup(horizontal=FALSE, container=Settings)
     remParam <- gWidgets2::ggroup(horizontal=FALSE, container=Settings)
-#    remParam <- gWidgets2::ggroup()
+
+    # ## Initialize spectrum chooser slider and method chooser
+    # if(dim(Y)[1] > 1)
+    #   spectrumNo <- gWidgets2::gslider(from=1, to=dim(Y)[1], by=1, value=1, handler = function(h,...) specNo<<-gWidgets2::svalue(spectrumNo), container=superGroup2)
+    #    remParam <- gWidgets2::ggroup()
     
     createMethodSliders()               # Add algorithm slides
     
