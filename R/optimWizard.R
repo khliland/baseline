@@ -1,5 +1,36 @@
 ### $Id: optimWizard.R 193 2012-06-24 21:13:42Z kristl $
 
+
+
+#' @title Visual tool for setting up optimization
+#' 
+#' @description Set up optimization through a graphical user interface. Optionally
+#' collecting values directly from 'baselineGUI'.  Retrieve optimisation
+#' parameters and results with \code{getOptim} and \code{getOptimRes},
+#' respectively.
+#' 
+#' 
+#' @aliases optimWizard getOptim getOptimRes
+#' @param X Matrix with spectra in rows
+#' @param y Response vector or matrix in analysis
+#' @param postproc Custum function for post processing of spectra (optional)
+#' @param predictionTest Custom prediction object (optional)
+#' @param cvsegments Cross-validation segments (optional)
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' \dontrun{
+#' # Computationally intensive
+#' data(milk)
+#' X <- milk$spectra[,-1]
+#' y <- milk$spectra[,1]
+#' optimWizard(X,y)
+#' 
+#' # After optimisation is complete
+#' plotOptim(myResults)
+#' }
+#' 
 optimWizard <- function(X, y, postproc, predictionTest, cvsegments){
   ## Organize optimization through GUI
   

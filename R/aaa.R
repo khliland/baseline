@@ -10,6 +10,31 @@
 #}
 
 .baselineEnv <- new.env(parent=emptyenv())
+
+
+#' Baseline environment
+#' 
+#' Methods to access the baseline environment.
+#' 
+#' 
+#' @aliases baselineEnv putBaselineEnv getBaselineEnv
+#' @param x Name of object to put/get.
+#' @param mode Mode of object to get.
+#' @param value Object to put.
+#' @return \code{getBaseline} retrieves an object.
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @seealso The functions implementing the baseline algorithms:
+#' \code{\link{baseline.als}}, \code{\link{baseline.fillPeaks}},
+#' \code{\link{baseline.irls}}, \code{\link{baseline.lowpass}},
+#' \code{\link{baseline.medianWindow}}, \code{\link{baseline.modpolyfit}},
+#' \code{\link{baseline.peakDetection}}, \code{\link{baseline.rfbaseline}},
+#' \code{\link{baseline.rollingBall}}
+#' @keywords baseline environment
+#' @examples
+#' 
+#' putBaselineEnv('fish', '<==x-<')
+#' getBaselineEnv('fish')
+#' 
 baselineEnv <- function() .baselineEnv
 putBaselineEnv <- function(x, value) assign(x, value, envir=baselineEnv())
 getBaselineEnv <- function(x, mode="any") get(x, envir=baselineEnv(), mode=mode, inherits=FALSE)

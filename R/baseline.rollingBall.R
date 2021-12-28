@@ -1,4 +1,30 @@
 ## $Id: baseline.rollingBall.R 170 2011-01-03 20:38:25Z bhm $
+
+
+#' @title Rolling ball
+#' 
+#' @description Ideas from Rolling Ball algorithm for X-ray spectra by M.A.Kneen and H.J.
+#' Annegarn. Variable window width has been left out
+#' 
+#' @aliases baseline.rollingBall rollingBall
+#' @param spectra Matrix with spectra in rows
+#' @param wm Width of local window for minimization/maximization
+#' @param ws Width of local window for smoothing
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references M.A. Kneen, H.J. Annegarn: Algorithm for fitting XRF, SEM and
+#' PIXE X-ray spectra backgrounds
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.rollingBall <- baseline(milk$spectra[1,, drop=FALSE], wm=200, ws=200,
+#' 	method='rollingBall')
+#' \dontrun{
+#' 	plot(bc.rollingBall)
+#' }
+#' 
 baseline.rollingBall <- function(spectra, wm, ws){
   ## Ideas from Rolling Ball algorithm for X-ray spectra by M.A.Kneen
   ## and H.J. Annegarn. Variable window width has been left out

@@ -1,4 +1,56 @@
 ### $Id: baseline.peakDetection.R 170 2011-01-03 20:38:25Z bhm $
+
+
+#' @title Simultaneous Peak Detection and Baseline Correction
+#' 
+#' @description A translation from Kevin R. Coombes et al.'s MATLAB code for detecting peaks
+#' and removing baselines
+#' 
+#' @details Peak detection is done in several steps sorting out real peaks through
+#' different criteria.  Peaks are removed from spectra and minimums and medians
+#' are used to smooth the remaining parts of the spectra.  If \code{snminimum}
+#' is omitted, y3, midspec, y and y2 are not returned (faster)
+#' 
+#' @aliases baseline.peakDetection peakDetection
+#' @param spectra Matrix with spectra in rows
+#' @param left Smallest window size for peak widths
+#' @param right Largest window size for peak widths
+#' @param lwin Smallest window size for minimums and medians in peak removed
+#' spectra
+#' @param rwin Largest window size for minimums and medians in peak removed
+#' spectra
+#' @param snminimum Minimum signal to noise ratio for accepting peaks
+#' @param mono Monotonically decreasing baseline if \code{mono}>0
+#' @param multiplier Internal window size multiplier
+#' @param left.right Sets eflt and right to value of \code{left.right}
+#' @param lwin.rwin Sets lwin and rwin to value of \code{lwin.rwin}
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' \item{peaks}{Final list of selected peaks} \item{sn}{List signal to noise
+#' ratios for peaks} \item{y3}{List of peaks prior to singal to noise
+#' selection} \item{midspec}{Mid-way baseline estimation} \item{y}{First
+#' estimate of peaks} \item{y2}{Second estimate of peaks}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references KEVIN R. COOMBES et al.: Quality control and peak finding for
+#' proteomics data collected from nipple aspirate fluid by surface-enhanced
+#' laser desorption and ionization.
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.peakDetection <- baseline(milk$spectra[1,, drop=FALSE], method='peakDetection',
+#' 	                            left=300, right=300, lwin=50, rwin=50)
+#' 
+#' \donttest{
+#'   # To obtain the peak list, specify S/N threshold and call the baseline function directly:
+#'   bc.peakDetection2 <- baseline.peakDetection(milk$spectra[1,, drop=FALSE], 
+#'                              left=300, right=300, lwin=50, rwin=50, snminimum = 5) 
+#' }
+#'
+#' \dontrun{
+#' 	plot(bc.peakDetection)
+#' }
+#' 
 baseline.peakDetection <- function(spectra, left, right, lwin, rwin, snminimum, mono=0, multiplier=5, left.right, lwin.rwin){
 # peakDetection(spectra, L, R, LB, RB, sn, mono, multiplier)
 #

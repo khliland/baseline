@@ -1,3 +1,27 @@
+#' @title Iterative Restricted Least Squares
+#' 
+#' @description An algorithm with primary smoothing and repeated baseline suppressions and
+#' regressions with 2nd derivative constraint
+#' 
+#' @aliases baseline.irls irls
+#' @param spectra Matrix with spectra in rows
+#' @param lambda1 2nd derivative constraint for primary smoothing
+#' @param lambda2 2nd derivative constraint for secondary smoothing
+#' @param maxit Maximum number of iterations
+#' @param wi Weighting of positive residuals
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' \item{smoothed }{Matrix of primary smoothed spectra}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.irls <- baseline(milk$spectra[1,, drop=FALSE], method='irls')
+#' \dontrun{
+#' 	plot(bc.irls)
+#' }
+#' 
 baseline.irls <- function(spectra, lambda1=5, lambda2=9, maxit=200, wi=0.05){
   ## Iterative restricted least squares with iteration breaking
   ## By Kristian Hovde Liland

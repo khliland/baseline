@@ -1,3 +1,32 @@
+#' @title Asymmetric Least Squares
+#' 
+#' @description Baseline correction by 2nd derivative constrained weighted regression.
+#' Original algorithm proposed by Paul H. C. Eilers and Hans F.M. Boelens
+#' 
+#' @details Iterative algorithm applying 2nd derivative constraints. Weights from
+#' previous iteration is \code{p} for positive residuals and \code{1-p} for
+#' negative residuals.
+#' 
+#' @aliases baseline.als als
+#' @param spectra Matrix with spectra in rows
+#' @param lambda 2nd derivative constraint
+#' @param p Weighting of positive residuals
+#' @param maxit Maximum number of iterations
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' \item{wgts }{Matrix of final regression weights}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references Paul H. C. Eilers and Hans F.M. Boelens: Baseline Correction
+#' with Asymmetric Least Squares Smoothing
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.als <- baseline(milk$spectra[1,, drop=FALSE], lambda=10, method='als')
+#' \dontrun{
+#' plot(bc.als)
+#' }
+#' 
 baseline.als <- function(spectra, lambda=6, p=0.05, maxit = 20){
   ## Eilers baseline correction for Asymmetric Least Squares
   ## Migrated from MATLAB original by Kristian Hovde Liland

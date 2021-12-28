@@ -3,6 +3,35 @@
 ### $Id: baseline.modpolyfit.R 90 2007-11-16 15:04:55Z kristl $
 ### By Bjørn-Helge Mevik and Kristian Hovde Liland
 
+
+
+#' @title Modified polynomial fitting
+#' 
+#' @description An implementation of CHAD A. LIEBER and ANITA MAHADEVAN-JANSENs algorithm
+#' for polynomial fiting
+#' 
+#' @details Polynomial fitting with baseline suppression relative to original spectrum
+#' 
+#' @aliases baseline.modpolyfit modpolyfit
+#' @param spectra Matrix with spectra in rows
+#' @param t Optional vector of spectrum abcissa
+#' @param degree Degree of polynomial
+#' @param tol Tolerance of difference between iterations
+#' @param rep Maximum number of iterations
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references CHAD A. LIEBER and ANITA MAHADEVAN-JANSEN: Automated Method for
+#' Subtraction of Fluorescence from Biological Raman Spectra
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.modpolyfit <- baseline(milk$spectra[1,, drop=FALSE], method='modpolyfit', deg=6)
+#' \dontrun{
+#' 	plot(bc.modpolyfit)
+#' }
+#' 
 baseline.modpolyfit <- function(spectra, t, degree = 4, tol = 1e-3, rep = 100) {
     ## Removing dimnames can save time and memory with long spectra:
     dimnames(spectra) <- NULL

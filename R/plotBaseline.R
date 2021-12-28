@@ -9,6 +9,50 @@
 ## (The y and ... arguments are needed to register this as a plot method)
 ## FIXME: How can we avoid having y as the second argument?  Or can we use it
 ## for something useful?
+
+
+#' @title Plot method for "baseline" objects
+#' 
+#' @description Plot the original spectrum, the estimated baseline, and the corrected
+#' spectrum.  Optionally zoom and pan plot, either with arguments or
+#' interactively.
+#' 
+#' @details The normal way to plot \code{baseline} objects is to use the \code{plot}
+#' method.  The \code{plotBaseline} function is the underlying work-horse
+#' function, and is not meant for interactive use.
+#' 
+#' @aliases plotBaseline plot,baseline-method
+#' @param x The \code{baseline} object to be plotted
+#' @param y Unused.  Ignored with a warning
+#' @param specNo The row number of the spectrum and baseline to plot.  Defaults
+#' to 1
+#' @param grid Logical.  Whether to show a grid or not.  Defaults to
+#' \code{FALSE}
+#' @param labels Vector.  Labels for the x tick marks.  Defaults to \code{1:n}
+#' @param rev.x Logical.  Whether the spectrum should be reversed.  Defaults to
+#' \code{FALSE}
+#' @param zoom Either \code{TRUE} (only for the plot method), which turns on
+#' the interactive zoom controls, or a list with components \code{xz},
+#' \code{xc}, \code{yz} and \code{yc}, which specifies the desired zoom and
+#' pan.  Defaults to no zoom or pan
+#' @param \dots Other arguments.  Currently ignored
+#' @note Because the argument list of any plot method must start with \code{x},
+#' \code{y}, and the plot method for the \code{baseline} class does not use the
+#' \code{y} argument, all arguments except \code{x} must be named explicitly.
+#' Positional matching will not work.
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @seealso \code{\link{baseline}}, \code{\linkS4class{baseline}},
+#' \code{\link{baselineGUI}}
+#' @keywords baseline plot
+#' @examples
+#' 
+#' data(milk)
+#' bl <- baseline(milk$spectra[1,, drop=FALSE])
+#' \dontrun{
+#'   # Computationally intensive
+#'   plot(bl)
+#'   plot(bl, zoom = TRUE)}
+#' 
 plotBaseline <- function(x, y, specNo = 1, grid = FALSE, labels = 1:n,
                          rev.x = FALSE,
                          zoom = list(xz = 1, yz = 1, xc = 0, yc = 0),

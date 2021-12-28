@@ -38,7 +38,72 @@ setClass("predictionTest")
 ## A class for the prediction test results
 setClass("predictionResult",
          representation(param = "numeric",
+
+
+#' Extraction functions for "predictionResult" or "baselineAlgResult" objects
+#' 
+#' Extract slots from objects of class \code{\linkS4class{predictionResult}} or
+#' \code{\linkS4class{baselineAlgResult}}.
+#' 
+#' The arguments to the \code{\linkS4class{baselineAlgResult}} method are
+#' interpreted in the following way:
+#' 
+#' Subsets of parameters levels can be selected by supplying their names and
+#' specifying the level indices as vectors. Substituting a vector with
+#' \code{"all"} will return all levels of the corresponding parameter, and
+#' substituting it with \code{"overall"} will return the level corresponding to
+#' the overall minimum.  Minimum and average values for selected parameters can
+#' be chosen using \code{MIN} and \code{AVG}, respectively, together with a
+#' vector of parameter names.
+#' 
+#' \code{DEFAULT} specifies the action for each remaining parameters: If
+#' \code{"all"} (default): returns all levels.  If \code{"cond.min"}: take
+#' minimum for each remaining parameter (MIN is not used).  If
+#' \code{"overall.min"}: set any remaining parameters to their value
+#' corresponding to the overall min. If \code{"avg"}: take average for each
+#' remaining parameter (AVG is not used).
+#' 
+#' @aliases qualMeas qualMeas-methods qualMeas,baselineAlgResult-method
+#' qualMeas,predictionResult-method minQualMeas minQualMeas-methods
+#' minQualMeas,baselineAlgResult-method minQualMeas,predictionResult-method
+#' param.min param.min-methods param.min,baselineAlgResult-method
+#' param.min,predictionResult-method qualMeasName qualMeasName-methods
+#' qualMeasName,baselineAlgResult-method qualMeasName,predictionResult-method
+#' @param object An object of class \code{\linkS4class{predictionResult}} or
+#' \code{\linkS4class{baselineAlgResult}}
+#' @param MIN List or vector of parameter names to take the minimum over.  Not
+#' used if \code{DEFAULT} is \code{"cond.min"}.  See Details
+#' @param AVG List or vector of parameter names to take the average over.  Not
+#' used if \code{DEFAULT} is \code{"avg"}.  See Details
+#' @param DEFAULT Character string.  The default way to calculate the minimum
+#' (or average) for all parameters.  See Details
+#' @param \dots Other arguments. Selection of subsets of parameter levels.  See
+#' Details
+#' @return The \code{qualMeas} method for
+#' \code{\linkS4class{baselineAlgResult}} objects returns the subsets or
+#' minimum values of the \code{qualMeas} slot of the object as specified above.
+#' All other methods simply return the corresponding slot.
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso Function \code{\link{runTest}}, classes
+#' \code{\linkS4class{baselineAlgResult}} and
+#' \code{\linkS4class{predictionResult}}
+#' @keywords methods baseline spectra
                         qualMeas = "numeric",
+
+
+#' Extraction methods specific for "predictionResult" objects
+#' 
+#' Extract information from objects of class
+#' \code{\linkS4class{predictionResult}}.
+#' 
+#' 
+#' @aliases ind.min ind.min-methods ind.min,predictionResult-method paramName
+#' paramName-methods paramName,predictionResult-method
+#' @param object Object of class \code{\linkS4class{predictionResult}}
+#' @return The corresponding slot of the object.
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso \code{\linkS4class{predictionResult}}
+#' @keywords methods
                         ind.min = "numeric", ##?
                         minQualMeas = "numeric", ##?
                         param.min = "numeric", ##?
@@ -88,6 +153,27 @@ setMethod("runTest", "PLSRTest",
               }
               ind.min <- which.min(rmsep)
               return(new("predictionResult",
+
+
+#' Extract the "param" slot
+#' 
+#' Extracts the \code{param} slot of the object.
+#' 
+#' 
+#' @aliases param param-methods param,baselineAlg-method
+#' param,baselineAlgResult-method param,baselineAlgTest-method
+#' param,predictionResult-method
+#' @param object An object of class \code{\linkS4class{baselineAlg}},
+#' \code{\linkS4class{baselineAlgTest}}, \code{\linkS4class{baselineAlgResult}}
+#' or \code{\linkS4class{predictionResult}}.
+#' @return The \code{param} slot of the object.  Usually a data frame, list or
+#' numeric.
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso Classes \code{\linkS4class{baselineAlg}},
+#' \code{\linkS4class{baselineAlgTest}},
+#' \code{\linkS4class{baselineAlgResult}},
+#' \code{\linkS4class{predictionResult}}
+#' @keywords baseline spectra methods
                          param = 0:ncomp,
                          qualMeas = rmsep, ind.min = ind.min, minQualMeas = min(rmsep),
                          param.min = ind.min - 1,
@@ -134,10 +220,42 @@ setMethod("runTest", "ridgeRegressionTest",
 setClass("baselineAlg",
          representation(name = "character",
                         description = "character",
+
+
+#' Extract the "funcName" slot.
+#' 
+#' Extract the \code{funcName} slot from an object of class
+#' \code{\linkS4class{baselineAlg}} or \code{\linkS4class{baselineAlgTest}}
+#' 
+#' 
+#' @aliases funcName funcName-methods funcName,baselineAlg-method
+#' funcName,baselineAlgTest-method
+#' @param object An object of class \code{\linkS4class{baselineAlg}} or
+#' \code{\linkS4class{baselineAlgTest}}
+#' @return The \code{funcName} slot of the object.
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso \code{\linkS4class{baselineAlg}},
+#' \code{\linkS4class{baselineAlgTest}}
+#' @keywords spectra baseline
                         funcName = "character",
                         param = "data.frame"
          ),
          prototype(param = data.frame(
+
+
+#' Extraction methods for "baselineAlg" objects
+#' 
+#' Extraction methods specifically for objects of class
+#' \code{\linkS4class{baselineAlg}}
+#' 
+#' 
+#' @aliases name name-methods name,baselineAlg-method description
+#' description-methods description,baselineAlg-method
+#' @param object Object of class \code{\linkS4class{baselineAlg}}
+#' @return The methods return the corresponding slot of the object.
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso \code{\linkS4class{baselineAlg}}, \code{\link{funcName}}.
+#' @keywords baseline spectra
            name = NA, integer = NA, min = NA, incl.min = NA,
            default = NA, max = NA, incl.max = NA)[0,]
          ),
@@ -331,6 +449,22 @@ setClass("baselineAlgResult",
                         qualMeas = "matrix", ## or multidimensional array?
                         qualMeas.ind.min = "numeric",
                         minQualMeas = "numeric", ##?
+
+
+#' Extraction methods for "baselineAlgResult" objects
+#' 
+#' Extraction methods that are specific for objects of class
+#' \code{\linkS4class{baselineAlgResult}}
+#' 
+#' 
+#' @aliases param.ind.min param.ind.min-methods
+#' param.ind.min,baselineAlgResult-method qualMeas.ind.min
+#' qualMeas.ind.min-methods qualMeas.ind.min,baselineAlgResult-method
+#' @param object Object of class \code{\linkS4class{baselineAlgResult}}
+#' @return The corresponding slot
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso Class \code{\linkS4class{baselineAlgResult}}
+#' @keywords baseline spectra
                         param.ind.min = "numeric",
                         param.min = "list",
                         qualMeasName = "character"
@@ -570,6 +704,49 @@ setMethod("qualMeas", "baselineAlgResult",
 ### Function for testing several baseline algorithms
 ###
 
+
+
+#' Optimise several baseline algorithms on a data set
+#' 
+#' Tests several baseline algorithms with one predictor for a given data set.
+#' The baseline algorithms are represented as a list of
+#' \code{\linkS4class{baselineAlgTest}} objects, and the predictor as a
+#' \code{\linkS4class{predictionTest}} object.
+#' 
+#' The function loops through the baseline algorithm tests in
+#' \code{baselineTests}, testing each of them with the given data and
+#' prediction test, and collects the results.  The results of each baseline
+#' algorithm test is saved in a temporary file so that if the optimisation is
+#' interrupted, it can be re-run and will use the pre-calculated results.  If
+#' \code{cleanTmp} is \code{TRUE}, the temporary files are deleted when the
+#' whole optimisation has finished.
+#' 
+#' @aliases doOptim mvrValstats
+#' @param baselineTests a list of \code{\linkS4class{baselineAlgTest}} objects.
+#' The baseline algorithms and parameter values to test
+#' @param X A matrix.  The spectra to use in the test
+#' @param y A vector or matrix.  The response(s) to use in the test
+#' @param predictionTest A \code{\linkS4class{predictionTest}} object.  The
+#' predictor and parameter values to use in the test
+#' @param postproc A function, used to postprocess the baseline corrected
+#' spectra prior to prediction testing.  The function should take a matrix of
+#' spectra as its only argument, and return a matrix of postprocessed spectra
+#' @param tmpfile The basename of the files used to store intermediate
+#' calculations for checkpointing.  Defaults to \code{"tmp.baseline"}
+#' @param verbose Logical, specifying whether the test should print out
+#' progress information.  Default is \code{FALSE}
+#' @param cleanTmp Logical, specifying whether the intermediate files should be
+#' deleted when the optimisation has finished.  Default is \code{FALSE}
+#' @return A list with components \item{baselineTests}{The \code{baselineTests}
+#' argument} \item{results}{A list with the \code{baselineAlgResult} objects
+#' for each baseline test} \item{minQualMeas}{The minimum quality measure
+#' value} \item{baselineAlg.min}{The name of the baseline algorithm giving the
+#' minimum quality measure value} \item{param.min}{A list with the parameter
+#' values corresponding to the minimum quality measure value}
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso
+#' \code{\linkS4class{baselineAlgTest}},\code{\linkS4class{predictionTest}}
+#' @keywords baseline spectra
 doOptim <- function(baselineTests, X, y, predictionTest,
                     postproc = NULL, tmpfile = "tmp.baseline",
                     verbose = FALSE, cleanTmp = FALSE) {
@@ -613,6 +790,23 @@ doOptim <- function(baselineTests, X, y, predictionTest,
 }
 
 ## Function to extract minimum from optimisation:
+
+
+#' Extract the minimum from a baseline optimisation
+#' 
+#' Takes the result of an optimisation (a call to \code{\link{doOptim}}) and
+#' extracts the minimum quality measure value along with the parameters giving
+#' rise to the value.
+#' 
+#' 
+#' @param results Result of call to \code{\link{doOptim}}
+#' @return A list with components \item{qualMeas}{The minimum quality measure
+#' value} \item{algorithm}{The name of the baseline algorithm corresponding to
+#' the minimum} \item{param}{A list with the parameter values corresponding to
+#' the minimum quality measure value}
+#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
+#' @seealso \code{\link{doOptim}}
+#' @keywords baseline spectra
 overall.min <- function(results) {
   with(results, list(qualMeas = minQualMeas, algorithm = baselineAlg.min,
                      param = param.min))

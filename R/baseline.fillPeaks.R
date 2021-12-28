@@ -1,4 +1,35 @@
 ## $Id: baseline.fillPeaks.R 170 2011-01-03 20:38:25Z bhm $
+
+
+#' @title Fill peaks
+#' 
+#' @description An iterative algorithm using suppression of baseline by means in local
+#' windows
+#' 
+#' @details In local windows of buckets the minimum of the mean and the previous
+#' iteration is chosen as the new baseline
+#' 
+#' @aliases baseline.fillPeaks fillPeaks
+#' @param spectra Matrix with spectra in rows
+#' @param lambda 2nd derivative penalty for primary smoothing
+#' @param hwi Half width of local windows
+#' @param it Number of iterations in suppression loop
+#' @param int Number of buckets to divide spectra into
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references Kristian Hovde Liland, 4S Peak Filling - baseline estimation by
+#' iterative mean suppression, MethodsX 2015
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.fillPeaks <- baseline(milk$spectra[1,, drop=FALSE], lambda=6,
+#' 	hwi=50, it=10, int=2000, method='fillPeaks')
+#' \dontrun{
+#' 	plot(bc.fillPeaks)
+#' }
+#' 
 baseline.fillPeaks <- function(spectra, lambda, hwi, it, int){
   ## Iterative baseline correction algorithm based on mean suppression
   ## By Kristian Hovde Liland

@@ -1,3 +1,30 @@
+#' @title Median window
+#' 
+#' @description An implementation and extention of Mark S. Friedrichs' model-free algorithm
+#' 
+#' @details An algorithm finding medians in local windows and smoothing with gaussian
+#' weighting
+#' 
+#' @aliases baseline.medianWindow medianWindow
+#' @param spectra Matrix with spectra in rows
+#' @param hwm Window half width for local medians
+#' @param hws Window half width for local smoothing (optional)
+#' @param end Original endpoint handling (optional boolean)
+#' @return \item{baseline }{Matrix of baselines corresponding to spectra
+#' \code{spectra}} \item{corrected }{Matrix of baseline corrected spectra}
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @references Mark S. Friedrichs: A model-free algorithm for the removal of
+#' baseline artifacts
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' bc.medianWindow <- baseline(milk$spectra[1,, drop=FALSE], hwm=300,
+#' 	method='medianWindow')
+#' \dontrun{
+#' 	plot(bc.medianWindow)
+#' }
+#' 
 baseline.medianWindow <- function(spectra, hwm, hws, end=FALSE){
 ## Implementation and extention of Marks S. Friedrichs model-free algorithm
 ## Coded by Kristian Hovde Liland and Bjørn-Helge Mevik

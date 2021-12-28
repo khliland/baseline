@@ -39,6 +39,33 @@ dimnames(baselineAlgorithmsGUI$shirley)	<- list(par=c("maxit", "err"),val=c("min
 baselineAlgorithmsGUI$shirley$current		<- c(50,1e-6)
 baselineAlgorithmsGUI$shirley$name			<- c("Max #iterations", "Error")
 
+
+
+#' @title Interactive plotting tool
+#' 
+#' @description An interactive plotting tool for dynamic visualization of baselines and
+#' their effect using the gWidgets2 package with GTK+ or Tcl/Tk.
+#' 
+#' @details Creates and updates a list containing current baseline and spectrum
+#' (baseline.result).  Make sure a gWidget2 implementation is available, e.g
+#' gWidgets2RGtk2 or gWidgets2tcltk and a corresponding backend like GTK+ or
+#' Tcl/Tk. The GUI was developed using GTK which is an external dependency in
+#' Windows ans OS X.
+#' 
+#' @param spectra Matrix with spectra in rows
+#' @param method Baseline correction method (optional)
+#' @param labels Labels for X-axis (optional)
+#' @param rev.x Reverse X-axis (optional, default=FALSE)
+#' @author Kristian Hovde Liland and Bjørn-Helge Mevik
+#' @keywords baseline spectra
+#' @examples
+#' 
+#' data(milk)
+#' \dontrun{
+#' # Dependent on external software
+#' baselineGUI(milk$spectra)
+#' }
+#' 
 baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
   if(requireNamespace("gWidgets2", quietly = TRUE)){
     if(exists("baselineAlgorithmsGUI",envir=.GlobalEnv)){
