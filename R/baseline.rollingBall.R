@@ -24,7 +24,7 @@
 #' \dontrun{
 #' 	plot(bc.rollingBall)
 #' }
-#' 
+#' @export
 baseline.rollingBall <- function(spectra, wm, ws){
   ## Ideas from Rolling Ball algorithm for X-ray spectra by M.A.Kneen
   ## and H.J. Annegarn. Variable window width has been left out

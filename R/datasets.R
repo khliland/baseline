@@ -23,7 +23,6 @@
 #' \dontrun{
 #' plot(milk$spectra[1,], type = "l")
 #' }
-#' 
 NULL
 
 
@@ -32,7 +31,6 @@ NULL
 #' @description Matrix of x,y values from X-Ray Photoelectron Spectroscopy on test
 #' sample.\cr The data are about the \code{Carbon} and \code{Oxygen} element
 #' for \code{1s} shell.
-#' 
 #' 
 #' @name XPSdata
 #' @aliases C1s O1s
@@ -48,7 +46,5 @@ NULL
 #' data(O1s)
 #' plot(C1s[1,], C1s[2,], type = "l")
 #' plot(O1s[1,], O1s[2,], type = "l")
-#' 
-#' 
 NULL
 

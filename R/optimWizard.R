@@ -27,10 +27,13 @@
 #' y <- milk$spectra[,1]
 #' optimWizard(X,y)
 #' 
+#' # Retrieve optimisation
+#' myResults <- getOptimRes()
+#' 
 #' # After optimisation is complete
 #' plotOptim(myResults)
 #' }
-#' 
+#' @export
 optimWizard <- function(X, y, postproc, predictionTest, cvsegments){
   ## Organize optimization through GUI
   
@@ -267,8 +270,8 @@ optimWizard <- function(X, y, postproc, predictionTest, cvsegments){
               }, container = regIntGroup1)
             else
               segChooser <<- gcombobox(c("random", "consecutive", "interleaved"), selected=1, container = regIntGroup1)
-            segNumber <<- gWidgets2::gedit("10", container = regIntGroup1)
-            regParam <<- gWidgets2::gedit(container = regIntGroup2)
+            segNumber <<- gWidgets2::gedit("10", container = regIntGroup2)
+            regParam <<- gWidgets2::gedit(container = regIntGroup3)
             gWidgets2::add(regIntGroup1, gWidgets2::glabel("CV segment type", container = regIntGroup1), expand=FALSE)
             gWidgets2::add(regIntGroup1, segChooser, expand=FALSE)
             if(cc){
@@ -276,20 +279,21 @@ optimWizard <- function(X, y, postproc, predictionTest, cvsegments){
               gWidgets2::svalue(segNumber) <- length(cvsegments)
               gWidgets2::enabled(segNumber) <- FALSE
             }
-            gWidgets2::add(regIntGroup1, gWidgets2::glabel("Number of segments", container = regIntGroup1), expand=FALSE)
-            gWidgets2::add(regIntGroup1, segNumber, expand=FALSE)
-            gWidgets2::add(regIntGroup2, gWidgets2::glabel("Number of components", container = regIntGroup2), expand=FALSE)
-            gWidgets2::add(regIntGroup2, regParam, expand=FALSE)
+            gWidgets2::add(regIntGroup2, gWidgets2::glabel("Number of segments", container = regIntGroup2), expand=FALSE)
+            gWidgets2::add(regIntGroup2, segNumber, expand=FALSE)
+            gWidgets2::add(regIntGroup3, gWidgets2::glabel("Number of components", container = regIntGroup3), expand=FALSE)
+            gWidgets2::add(regIntGroup3, regParam, expand=FALSE)
             gWidgets2::add(regOutGroup, regIntGroup1, expand=FALSE)
             gWidgets2::add(regOutGroup, regIntGroup2, expand=FALSE)
+            gWidgets2::add(regOutGroup, regIntGroup3, expand=FALSE)
           }
           if(gWidgets2::svalue(regChooser,index=TRUE)==3){ # Display extra parameters for Ridge regression
             regFrom <<- gWidgets2::gedit(coerce.with=as.numeric, container = regIntGroup1)
-            size(regFrom) <<- c(60,24)
+#            size(regFrom) <<- c(60,24)
             regTo <<- gWidgets2::gedit(coerce.with=as.numeric, container = regIntGroup2)
-            size(regTo) <<- c(60,24)
+#            size(regTo) <<- c(60,24)
             regSteps <<- gWidgets2::gedit(coerce.with=as.numeric, container = regIntGroup3)
-            size(regSteps) <<- c(60,24)
+#            size(regSteps) <<- c(60,24)
             lambdaSequence <<- gcombobox(c("-> Generate", "Linear","Exponential"), container = regIntGroup4)
             # Generate sequence based on 'From', 'To', 'Steps' and choice from droplist
             gWidgets2::addHandlerChanged(lambdaSequence, handler = function(h,...){

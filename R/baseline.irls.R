@@ -21,7 +21,7 @@
 #' \dontrun{
 #' 	plot(bc.irls)
 #' }
-#' 
+#' @export
 baseline.irls <- function(spectra, lambda1=5, lambda2=9, maxit=200, wi=0.05){
   ## Iterative restricted least squares with iteration breaking
   ## By Kristian Hovde Liland

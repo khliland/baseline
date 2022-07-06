@@ -12,9 +12,10 @@
 .baselineEnv <- new.env(parent=emptyenv())
 
 
-#' Baseline environment
+#' @name baselineEnv
+#' @title Baseline environment
 #' 
-#' Methods to access the baseline environment.
+#' @description Methods to access the baseline environment.
 #' 
 #' 
 #' @aliases baselineEnv putBaselineEnv getBaselineEnv
@@ -34,9 +35,19 @@
 #' 
 #' putBaselineEnv('fish', '<==x-<')
 #' getBaselineEnv('fish')
-#' 
+#' @export
+NULL
+
+#' @rdname baselineEnv
+#' @export
 baselineEnv <- function() .baselineEnv
+
+#' @rdname baselineEnv
+#' @export
 putBaselineEnv <- function(x, value) assign(x, value, envir=baselineEnv())
+
+#' @rdname baselineEnv
+#' @export
 getBaselineEnv <- function(x, mode="any") get(x, envir=baselineEnv(), mode=mode, inherits=FALSE)
 
 putBaselineEnv("baseline.result", list())

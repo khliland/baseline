@@ -24,7 +24,7 @@
 #' \dontrun{
 #' 	plot(bc.lowpass)
 #' }
-#' 
+#' @export
 baseline.lowpass <- function(spectra, steep = 2, half = 5) {
 ## Low-pass filter based on fast fourier transform
 ## as presented by Atakan, Blass and Jennings

@@ -39,7 +39,7 @@
 #' lines(1:10000,getBaseline(ordinary), lty=2, col=2, lwd=2)
 #' lines(1:10000,customized$baseline, lty=3, col=3, lwd=2)
 #' }
-#' 
+#' @export
 custom.baseline <- function(spectra, breaks, gaps, trans.win=NULL, just.plot=FALSE, method, ...){
 	np     <- dim(spectra)
 

@@ -50,7 +50,7 @@
 #' \dontrun{
 #' 	plot(bc.peakDetection)
 #' }
-#' 
+#' @export
 baseline.peakDetection <- function(spectra, left, right, lwin, rwin, snminimum, mono=0, multiplier=5, left.right, lwin.rwin){
 # peakDetection(spectra, L, R, LB, RB, sn, mono, multiplier)
 #

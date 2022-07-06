@@ -5,13 +5,12 @@
 ### Baseline class
 ###
 
+#' @name baselineClass
 #' @title Class "baseline"
 #' 
 #' @description Stores the result of estimating baselines for one or more spectra.
 #' 
-#' @name baseline-class
-#' @aliases baseline-class getBaseline,baseline-method getCall,baseline-method
-#' getCorrected,baseline-method getSpectra,baseline-method
+#' @aliases baselineClass
 #' @docType class
 #' @section Objects from the Class: The normal way to create objects is with
 #' the function \code{\link{baseline}}.  Several baseline algorithms are
@@ -24,7 +23,12 @@
 #' @examples
 #' 
 #' showClass("baseline")
-#' 
+#' @importFrom stats approx dnorm fitted formula lm lowess median model.frame model.response mvfft napredict predict residuals runmed sd var
+#' @importFrom methods new
+#' @importFrom graphics axTicks axis box legend lines matplot par rect text
+#' @importFrom grDevices dev.cur dev.list dev.new dev.set gray
+#' @export baseline
+#' @exportClass baseline
 setClass("baseline",
          representation(baseline = "matrix", corrected = "matrix",
                         spectra = "matrix", call = "language")
@@ -36,6 +40,7 @@ setClass("baseline",
 
 
 
+#' @name baseline
 #' @title Baseline correction
 #' 
 #' @description Common framework for baseline correction
@@ -94,7 +99,7 @@ setClass("baseline",
 #'   # Dependent on external software
 #'   baselineGUI(milk$spectra)
 #' }
-#' 
+#' @export
 baseline <- function (spectra, method = "irls", ...) {
     ## Get baseline algorithm function name:
 	if(exists("baselineAlgorithms",envir=.GlobalEnv)){
@@ -131,6 +136,7 @@ baseline <- function (spectra, method = "irls", ...) {
 ### Extraction methods
 ###
 
+#' @name getSpectra
 #' @title Functions to extract the components of a "baseline" object
 #' 
 #' @description The functions extract the \code{baseline}, \code{spectra}, \code{corrected}
@@ -160,12 +166,21 @@ baseline <- function (spectra, method = "irls", ...) {
 #' spectra   <- getSpectra(bl)
 #' corrected <- getCorrected(bl)
 #' call      <- getCall(bl)
-#' 
+#' @export
 setGeneric("getSpectra", function(object) standardGeneric("getSpectra"))
 setMethod("getSpectra", "baseline", function(object) object@spectra)
+
+#' @rdname getSpectra
+#' @export
 setGeneric("getCorrected", function(object) standardGeneric("getCorrected"))
 setMethod("getCorrected", "baseline", function(object) object@corrected)
+
+#' @rdname getSpectra
+#' @export
 setGeneric("getBaseline", function(object) standardGeneric("getBaseline"))
 setMethod("getBaseline", "baseline", function(object) object@baseline)
+
+#' @rdname getSpectra
+#' @export
 setGeneric("getCall", function(object) standardGeneric("getCall"))
 setMethod("getCall", "baseline", function(object) object@call)

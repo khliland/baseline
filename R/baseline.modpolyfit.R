@@ -31,7 +31,7 @@
 #' \dontrun{
 #' 	plot(bc.modpolyfit)
 #' }
-#' 
+#' @export
 baseline.modpolyfit <- function(spectra, t, degree = 4, tol = 1e-3, rep = 100) {
     ## Removing dimnames can save time and memory with long spectra:
     dimnames(spectra) <- NULL

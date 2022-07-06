@@ -1,6 +1,31 @@
 ### $Id: baselineGUI.R 193 2012-06-24 21:13:42Z kristl $
 
 ## Baseline parameters, expandable list
+#' List of available baseline algorithms for GUI function
+#' 
+#' A list with data.frames containing parameters, minimum and maximum values
+#' for GUIs, step lengths for sliders, default values and currently selected
+#' values, plus a short description of each parameter. The list is used by the
+#' GUIs, and is user customizable.
+#' 
+#' The list is not meant for usage by end-users, but is extendable and
+#' customizable, allowing for extra algorithms, removal of algoritms or
+#' changing of parameter sets.
+#' 
+#' @name baselineAlgorithmsGUI
+#' @docType data
+#' @keywords baseline
+#' @examples
+#' 
+#' ## Get a list of all algorithms:
+#' names(baselineAlgorithmsGUI)
+#' ## Add new algorithm:
+#' baselineAlgorithmsGUI$my.alg <- as.data.frame(matrix(c(0,20,1,1, 0,20,1,1), 2,4, byrow=TRUE))
+#' dimnames(baselineAlgorithmsGUI$my.alg) <- list(par=c("kappa", "gamma"),
+#' 	val=c("min","max","step","default"))
+#' baselineAlgorithmsGUI$my.alg$current <- c(1,1)
+#' baselineAlgorithmsGUI$my.alg$name <- c("Subtractive constand", "Additive constant")
+#' @export
 baselineAlgorithmsGUI <- list()
 baselineAlgorithmsGUI$irls					    <- as.data.frame(matrix(c(0,10,0.1,5, 5,15,0.1,8, 0,0.5,0.01,0.05, 50,200,25,100), 4,4, byrow=TRUE))
 dimnames(baselineAlgorithmsGUI$irls)		<- list(par=c("lambda1", "lambda2", "wi", "maxit"),val=c("min","max","step","default"))
@@ -65,7 +90,7 @@ baselineAlgorithmsGUI$shirley$name			<- c("Max #iterations", "Error")
 #' # Dependent on external software
 #' baselineGUI(milk$spectra)
 #' }
-#' 
+#' @export
 baselineGUI <- function(spectra, method='irls', labels, rev.x=FALSE){
   if(requireNamespace("gWidgets2", quietly = TRUE)){
     if(exists("baselineAlgorithmsGUI",envir=.GlobalEnv)){

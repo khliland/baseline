@@ -38,7 +38,7 @@
 #' \dontrun{
 #' 	plot(bc.rbe)
 #' }
-#' 
+#' @export
 baseline.rfbaseline <- function(spectra, span=2/3, NoXP=NULL, maxit=c(2,2), b=3.5,
                                 weight=NULL, Scale=function(r) median(abs(r))/0.6745,
                                 delta=NULL, SORT=FALSE, DOT=FALSE, init=NULL){

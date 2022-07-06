@@ -29,7 +29,7 @@
 #' \dontrun{
 #' 	plot(bc.fillPeaks)
 #' }
-#' 
+#' @export
 baseline.fillPeaks <- function(spectra, lambda, hwi, it, int){
   ## Iterative baseline correction algorithm based on mean suppression
   ## By Kristian Hovde Liland

@@ -106,7 +106,7 @@
 #' # Dependent on external software
 #' baselineGUI(Y, labels=X, method="shirley")
 #' }
-#' 
+#' @export
 baseline.shirley <- function(spectra, t = NULL, limits = NULL, maxit = 50, err = 1e-6) {
 # INPUT:
 # spectra - matrix with y in first row (y = spectra[1,])

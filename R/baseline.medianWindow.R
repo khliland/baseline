@@ -24,7 +24,7 @@
 #' \dontrun{
 #' 	plot(bc.medianWindow)
 #' }
-#' 
+#' @export
 baseline.medianWindow <- function(spectra, hwm, hws, end=FALSE){
 ## Implementation and extention of Marks S. Friedrichs model-free algorithm
 ## Coded by Kristian Hovde Liland and Bjørn-Helge Mevik

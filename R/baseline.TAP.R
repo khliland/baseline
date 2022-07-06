@@ -59,7 +59,7 @@
 #' 
 #' # Plot 
 #' plot(B, xlab = "T", ylab = "da/dT")
-#' 
+#' @export
 baseline.TAP <- function(spectra, t = NULL, interval = 15, tol = 0.001){
   dims <- dim(spectra)
   if(is.null(t)){

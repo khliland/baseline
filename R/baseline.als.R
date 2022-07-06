@@ -19,6 +19,8 @@
 #' @references Paul H. C. Eilers and Hans F.M. Boelens: Baseline Correction
 #' with Asymmetric Least Squares Smoothing
 #' @keywords baseline spectra
+#' @importFrom limSolve Solve.banded
+#' @importFrom SparseM as.matrix.csr
 #' @examples
 #' 
 #' data(milk)
@@ -26,7 +28,7 @@
 #' \dontrun{
 #' plot(bc.als)
 #' }
-#' 
+#' @export
 baseline.als <- function(spectra, lambda=6, p=0.05, maxit = 20){
   ## Eilers baseline correction for Asymmetric Least Squares
   ## Migrated from MATLAB original by Kristian Hovde Liland

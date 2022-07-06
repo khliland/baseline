@@ -52,7 +52,7 @@
 #'   # Computationally intensive
 #'   plot(bl)
 #'   plot(bl, zoom = TRUE)}
-#' 
+#' @export
 plotBaseline <- function(x, y, specNo = 1, grid = FALSE, labels = 1:n,
                          rev.x = FALSE,
                          zoom = list(xz = 1, yz = 1, xc = 0, yc = 0),

@@ -30,6 +30,9 @@ X <- milk$spectra[,-1]
 y <- milk$spectra[,1]
 optimWizard(X,y)
 
+# Retrieve optimisation
+myResults <- getOptimRes()
+
 # After optimisation is complete
 plotOptim(myResults)
 }
