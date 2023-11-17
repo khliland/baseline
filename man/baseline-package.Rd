@@ -9,13 +9,6 @@ Baseline correction
 A common framework with implementations of several baseline correction methods
 }
 \details{
-\tabular{ll}{
-Package: \tab baseline\cr
-Type: \tab Package\cr
-Version: \tab 1.2-2\cr
-Date: \tab 2019-11-05\cr
-License: \tab GPL-2\cr
-}
 Use function baseline for baseline correction. This function takes matrices of
 spectra, a method name and parameters needed for the specific method. See
 helpfiles for details.
