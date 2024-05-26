@@ -1,15 +1,11 @@
-citHeader("To cite the baseline package in publications use:")
+## R package reference generated from DESCRIPTION metadata
+citation(auto = meta)
 
-citEntry(entry = "Article",
-  title        = "Optimal Choice of Baseline Correction for Multivariate Calibration of Spectra",
-  author       = personList(as.person("Kristian Hovde Liland"), as.person("Trygve Almøy"), as.person("Bjørn-Helge Mevik")),
-  year         = "2010",
-  volume	     = "64",
-  pages        = "1007-1016",
-  journal      = "Applied Spectroscopy",
-
-  textVersion  =
-  paste("Kristian Hovde Liland, Trygve Almøy, Bjørn-Helge Mevik (2010).",
-        "Optimal Choice of Baseline Correction for Multivariate Calibration of Spectra.",
-        "Applied Spectroscopy 64, pp. 1007-1016.")
-)
+## Baseline article
+bibentry(bibtype = "Article",
+         title = "Optimal Choice of Baseline Correction for Multivariate Calibration of Spectra",
+         author = c(person("Kristian Hovde", "Liland"), person("Trygve", "Almøy"), 
+                    person("Bjørn-Helge", "Mevik")),
+         year = "2010", volume = "64",
+         pages = "1007-1016", journal = "Applied Spectroscopy",
+         doi = "10.1366/000370210792434350")
