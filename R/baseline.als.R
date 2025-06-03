@@ -19,7 +19,6 @@
 #' @references Paul H. C. Eilers and Hans F.M. Boelens: Baseline Correction
 #' with Asymmetric Least Squares Smoothing
 #' @keywords baseline spectra
-#' @importFrom limSolve Solve.banded
 #' @importFrom SparseM as.matrix.csr
 #' @examples
 #' 
@@ -64,7 +63,7 @@ baseline.als <- function(spectra, lambda=6, p=0.05, maxit = 20){
       W[3,] <- w
       
       # Restricted regression
-      z <- Solve.banded(W+DD,2,2,w*y)
+      z <- .s2band(W+DD, w*y)
       w_old <- w
       
       # Weights for next regression

@@ -54,7 +54,7 @@ baseline.irls <- function(spectra, lambda1=5, lambda2=9, maxit=200, wi=0.05){
   U2 <- W+DD*10^lambda2
 
   # Primary smoothing
-  smoothed <- t(Solve.banded(U1,2,2,t(spectra)))
+  smoothed <- t(.s2band(U1,t(spectra)))
 
   # Iterate through spectra
   for(i in 1:mn[1]){
@@ -79,7 +79,7 @@ baseline.irls <- function(spectra, lambda1=5, lambda2=9, maxit=200, wi=0.05){
       xn <- xn + dif
       
       # Secondary smoothing
-      xn <- Solve.banded(U2,2,2,xn)
+      xn <- .s2band(U2,xn)
     }
     baseline[i,] <- xn
   }

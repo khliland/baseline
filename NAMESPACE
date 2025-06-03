@@ -2,7 +2,6 @@ importFrom("graphics", "axTicks", "axis", "box", "legend", "lines", "matplot", "
 importFrom("grDevices", "dev.cur", "dev.list", "dev.new", "dev.set", "gray")
 importFrom("methods", "new", "setGeneric")
 importFrom("stats", "approx", "dnorm", "fitted", "formula", "lowess", "median", "model.frame", "mvfft", "napredict", "predict", "residuals", "runmed", "sd", "var","lm")
-importFrom("limSolve", "Solve.banded")
 import(SparseM)
 exportPattern("^[^\\.]") # Export all except .functions
 exportClassPattern("^[^\\.]") # Export all S4 classes # baseline, predictorTest, predictorResult, PLSRTest, ridgeRegressionTest, baselineAlg, baselineAlgTest, baselineAlgResult)
@@ -26,3 +25,4 @@ exportMethods(	plot,         # Export all S4 methods
 				extraArgs,
 				qualMeas.ind.min,
 				param.ind.min)
+useDynLib(baseline)

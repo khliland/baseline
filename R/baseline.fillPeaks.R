@@ -60,7 +60,7 @@ baseline.fillPeaks <- function(spectra, lambda, hwi, it, int){
   # ------==== S1: Smoothing ====------
   Yorig   <- spectra
   if(lambda > 0){
-    spectra <- t(Solve.banded(DD,2,2,t(spectra)))
+    spectra <- t(.s2band(DD,t(spectra)))
   }
   
   # Exponential decrease in interval width
