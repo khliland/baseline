@@ -1,1 +1,1 @@
-PKG_LIBS = $(BLAS_LIBS) -llapack -lgfortran -lquadmath
+PKG_LIBS = $(BLAS_LIBS) -llapack -lgfortran
