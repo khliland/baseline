@@ -497,11 +497,15 @@ optimWizard <- function(X, y, postproc, predictionTest, cvsegments){
   }
 }
 
+#' @rdname optimWizard
+#' @export
 getOptim <- function(){
   list(bltests        = getBaselineEnv("bltests"),
        predictionTest = getBaselineEnv("predictionTest"),
        postproc       = getBaselineEnv("postproc"))
 }
+#' @rdname optimWizard
+#' @export
 getOptimRes <- function(){
   getBaselineEnv("optimRes")
 }

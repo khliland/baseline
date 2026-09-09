@@ -3,13 +3,14 @@
 #' @description Matrix of 45 spectra of 21451 m/z values from MALDI-TOF on mixed milk
 #' samples.
 #' 
-#' \code{cow} is the concentration of cow milk in mixed samples of cow, goat,
+#' @details \code{cow} is the concentration of cow milk in mixed samples of cow, goat,
 #' and ewe milk.
 #' 
 #' @name milk
 #' @docType data
+#' @usage data(milk)
 #' @format A data frame with 45 observations on the following 2 variables.
-#' \describe{ \item{list("cow")}{a numeric vector} \item{list("spectra")}{a
+#' \describe{ \item{\code{cow}}{a numeric vector} \item{\code{spectra}}{a
 #' matrix with 21451 columns} }
 #' @references Kristian Hovde Liland, Bjørn-Helge Mevik, Elling-Olav Rukke,
 #' Trygve Almøy, Morten Skaugen and Tomas Isaksson (2009) Quantitative whole
@@ -35,9 +36,11 @@ NULL
 #' @name XPSdata
 #' @aliases C1s O1s
 #' @docType data
+#' @usage data(C1s)
+#' data(O1s)
 #' @format A matrix with the following 2 variables (rows).  \describe{
-#' \item{list("first row")}{is the abscissa, ( Binding Energy [eV] )}
-#' \item{list("second row")}{is the Intensity, ( a.u. )} }
+#' \item{\code{first row}}{is the abscissa, ( Binding Energy [eV] )}
+#' \item{\code{second row}}{is the Intensity, ( a.u. )} }
 #' @seealso \link{baseline.shirley}
 #' @keywords datasets
 #' @examples

@@ -10,12 +10,32 @@
 #' 
 #' @description Stores the result of estimating baselines for one or more spectra.
 #' 
-#' @aliases baselineClass
+#' @aliases baselineClass baseline-class
 #' @docType class
+#' @slot baseline A matrix with the estimated baselines
+#' @slot corrected A matrix with the corrected spectra
+#' @slot spectra A matrix with the original spectra
+#' @slot call The call to \code{\link{baseline}}
 #' @section Objects from the Class: The normal way to create objects is with
 #' the function \code{\link{baseline}}.  Several baseline algorithms are
 #' available.  See \code{\link{baseline}} for details.  There is a plot method
 #' for the class; see \code{\link{plot,baseline-method}}.
+#' @section Methods:
+#' \describe{
+#' \item{getBaseline}{\code{signature(object = "baseline")}: Extract
+#'   the estimated baselines}
+#' \item{getCall}{\code{signature(object = "baseline")}: Extract the
+#'   call to \code{\link{baseline}} used to create the object}
+#' \item{getCorrected}{\code{signature(object = "baseline")}: Extract
+#'   the corrected spectra}
+#' \item{getSpectra}{\code{signature(object = "baseline")}: Extract the
+#'   original spectra}
+#' }
+#' @section Warning: In a future versoion, one of the slots might be
+#' removed from the class definition and calculated on the fly instead,
+#' in order to save space.  Therefore, \emph{do} use the extractor
+#' functions (\code{getSpectra}, \code{getBaseline} and
+#' \code{getCorrected}) instead of accessing the slots directly.
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
 #' @seealso \code{\link{baseline}}, \code{\link{getBaseline}},
 #' \code{\link{getSpectra}}, \code{\link{getCorrected}}, \code{\link{getCall}}
@@ -144,7 +164,7 @@ baseline <- function (spectra, method = "irls", ...) {
 #' result of a call to \code{\link{baseline}}.
 #' 
 #' 
-#' @aliases getBaseline getSpectra getCorrected getCall
+#' @aliases getBaseline getSpectra getCorrected getCall getBaseline,baseline-method getCall,baseline-method getCorrected,baseline-method getSpectra,baseline-method
 #' @param object A \code{\linkS4class{baseline}} object
 #' @return \code{getCall} returns the \code{baseline} call used to create the
 #' object.  The other functions return a matrix with the original spectra,

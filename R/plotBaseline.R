@@ -118,6 +118,8 @@ plotBaseline <- function(x, y, specNo = 1, grid = FALSE, labels = 1:n,
 ### The plot method
 ###
 
+#' @rdname plotBaseline
+#' @export
 setMethod("plot", "baseline",
           function(x, y, specNo = 1, grid = FALSE, labels = 1:n,
                    rev.x = FALSE, zoom = NULL,

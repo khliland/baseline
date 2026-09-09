@@ -15,7 +15,7 @@
 ## It will have methods for the predictionTest subclasses, and the
 ## baselineAlgTest class.
 #' @name runTest
-#' @aliases runTest
+#' @aliases runTest runTest-methods runTest,baselineAlgTest-method runTest,PLSRTest-method runTest,ridgeRegressionTest-method
 #' @title Run a predictionTest or baselineAlgTest
 #' @description 
 #' Runs the test defined in a \code{\linkS4class{predictionTest}} or  \code{\linkS4class{baselineAlgTest}} object
@@ -49,7 +49,7 @@ setGeneric("runTest", function(object, X, y, ...) standardGeneric("runTest"))
 ## A function for extracting the quality measures from objects.
 ## It will have methods for predictionResult and baselineAlgResult.
 #' @name qualMeas
-#' @aliases qualMeas minQualMeas param.min qualMeasName
+#' @aliases qualMeas minQualMeas param.min qualMeasName qualMeas-methods qualMeas,baselineAlgResult-method qualMeas,predictionResult-method minQualMeas-methods minQualMeas,baselineAlgResult-method minQualMeas,predictionResult-method param.min-methods param.min,baselineAlgResult-method param.min,predictionResult-method qualMeasName-methods qualMeasName,baselineAlgResult-method qualMeasName,predictionResult-method
 #' @title Extraction functions for "predictionResult" or "baselineAlgResult" objects.
 #' @description Extract slots from objects of class
 #'    \code{\linkS4class{predictionResult}} or
@@ -94,7 +94,7 @@ setGeneric("qualMeas", function(object, ...) standardGeneric("qualMeas"))
 ## It will have methods for predictionResult, baselineAlgTest,
 ## baselineAlgResult and baselineAlg.
 #' @name param
-#' @aliases param
+#' @aliases param param-methods param,baselineAlg-method param,baselineAlgResult-method param,baselineAlgTest-method param,predictionResult-method
 #' @title Extract the "param" slot
 #' @description Extracts the \code{param} slot of the object.
 #' @param object An object of class \code{\linkS4class{baselineAlg}},
@@ -117,7 +117,7 @@ setGeneric("param", function(object) standardGeneric("param"))
 ## A virtual class for all prediction tests.  It will have subclasses for each
 ## type of predictor (PLSR, RR, ...).
 #' @name predictionTest
-#' @aliases  predictionTestClass
+#' @aliases  predictionTestClass predictionTest-class
 #' @title  Class "predictionTest"
 #' @description
 #' A virtual class for all predictor test subclasses.  Currently
@@ -134,7 +134,7 @@ setGeneric("param", function(object) standardGeneric("param"))
 setClass("predictionTest")
 
 #' @name predictionResult
-#' @aliases  predictionResult
+#' @aliases  predictionResult predictionResult-class
 #' @title Class "predictionResult"
 #' @description
 #' A class containing the result of running a
@@ -143,14 +143,13 @@ setClass("predictionTest")
 #' The normal way to create objects is by calling the method
 #' \code{runTest} for any object of subclass of
 #' \code{\linkS4class{predictionTest}}.
-#' @section Slots:
-#' \code{param}: Numeric vector.  The regression parameter values tested.  
-#' \code{qualMeas}: Numeric vector.  The quality measure values for each of the values of the \code{param} slot
-#' \code{ind.min}: The index (into \code{qualMeas}) of the minimum quality measure value.
-#' \code{minQualMeas}: The minimum quality measure value.
-#' \code{param.min}: The value of the parameter value corresponding to the minimum quality measure value.
-#' \code{qualMeasName}: The name of the quality measure.
-#' \code{paramName}: The name of the regression parameter.
+#' @slot param Numeric vector.  The regression parameter values tested.
+#' @slot qualMeas Numeric vector.  The quality measure values for each of the values of the \code{param} slot
+#' @slot ind.min The index (into \code{qualMeas}) of the minimum quality measure value.
+#' @slot minQualMeas The minimum quality measure value.
+#' @slot param.min The value of the parameter value corresponding to the minimum quality measure value.
+#' @slot qualMeasName The name of the quality measure.
+#' @slot paramName The name of the regression parameter.
 #' @section Methods:
 #' ind.min: \code{signature(object = "predictionResult")}: Extract the \code{ind.min} slot
 #' minQualMeas: \code{signature(object = "predictionResult")}: Extract the \code{minQualMeas} slot
@@ -175,10 +174,10 @@ setClass("predictionResult",
                         paramName = "character"
          ))
 
+#' @rdname param
 setMethod("param", "predictionResult", function(object) object@param)
 
-# #' @rdname predictionResult
-# #' @exportMethod qualMeas predictionResult
+#' @rdname qualMeas
 setMethod("qualMeas", "predictionResult", function(object, ...) object@qualMeas)
 
 #' @name predictionResultMethods
@@ -187,7 +186,7 @@ setMethod("qualMeas", "predictionResult", function(object, ...) object@qualMeas)
 #' @description Extract information from objects of class
 #' \code{\linkS4class{predictionResult}}.
 #' 
-#' @aliases ind.min paramName
+#' @aliases ind.min paramName ind.min-methods ind.min,predictionResult-method paramName-methods paramName,predictionResult-method
 #' @param object Object of class \code{\linkS4class{predictionResult}}
 #' @return The corresponding slot of the object.
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
@@ -197,17 +196,17 @@ setMethod("qualMeas", "predictionResult", function(object, ...) object@qualMeas)
 setGeneric("ind.min", function(object) standardGeneric("ind.min"))
 setMethod("ind.min", "predictionResult", function(object) object@ind.min)
 
-#' @rdname predictionResult
+#' @rdname qualMeas
 #' @export
 setGeneric("minQualMeas", function(object) standardGeneric("minQualMeas"))
 setMethod("minQualMeas", "predictionResult", function(object) object@minQualMeas)
 
-#' @rdname predictionResult
+#' @rdname qualMeas
 #' @export
 setGeneric("param.min", function(object) standardGeneric("param.min"))
 setMethod("param.min", "predictionResult", function(object) object@param.min)
 
-#' @rdname predictionResult
+#' @rdname qualMeas
 #' @export
 setGeneric("qualMeasName", function(object) standardGeneric("qualMeasName"))
 setMethod("qualMeasName", "predictionResult", function(object) object@qualMeasName)
@@ -223,15 +222,14 @@ setMethod("paramName", "predictionResult", function(object) object@paramName)
 
 ## The class
 #' @name PLSRTestClass
-#' @aliases PLSRTestClass
+#' @aliases PLSRTestClass PLSRTest-class
 #' @title Class "PLSRTest"
 #' @description
 #' A class describing a PLSR prediction test.  To run the test, the "pls" package must be installed.
 #' @section Objects from the Class:
 #' Objects can be created by calls of the form \code{new("PLSRTest", ...)}.
-#' @section Slots:
-#' \code{ncomp}: Integer vector.  The number of PLSR components to test.
-#' \code{cvsegments}: A list of the segments to use in the cross-validation.
+#' @slot ncomp Integer vector.  The number of PLSR components to test.
+#' @slot cvsegments A list of the segments to use in the cross-validation.
 #' @section Extends:
 #' Class \code{\linkS4class{predictionTest}}, directly.
 #' @section Methods:
@@ -246,8 +244,7 @@ setClass("PLSRTest", contains = "predictionTest",
          representation(ncomp = "numeric", cvsegments = "list"))
 
 ## The prediction test method
-# #' @rdname runTestMethods
-# #' @exportMethod runTest PLSRTest
+#' @rdname runTest
 setMethod("runTest", "PLSRTest",
           function(object, X, y) {
             if(requireNamespace("pls", quietly = TRUE)){
@@ -288,8 +285,7 @@ setMethod("runTest", "PLSRTest",
 #' @description A class describing a ridge regression test.
 #' @section Objects from the Class:
 #' Objects can be created by calls of the form \code{new("ridgeRegressionTest", ...)}.
-#' @section Slots:
-#' \code{lambda}: Numeric vector.  The smoothing parameter values to test
+#' @slot lambda Numeric vector.  The smoothing parameter values to test
 #' @section Extends:
 #' Class \code{\linkS4class{predictionTest}}, directly.
 #' @section Methods:
@@ -303,6 +299,7 @@ setMethod("runTest", "PLSRTest",
 setClass("ridgeRegressionTest", contains = "predictionTest",
          representation(lambda = "numeric"))
 
+#' @rdname runTest
 setMethod("runTest", "ridgeRegressionTest",
           function(object, X, y) {
             if(requireNamespace("MASS", quietly = TRUE)){
@@ -327,15 +324,51 @@ setMethod("runTest", "ridgeRegressionTest",
 ### FIXME: Put in separate file!
 
 
-#' @name baselineAlg
+#' @name baselineAlgClass
 #' @title Class "baselineAlg"
 #' 
 #' @description A class that describes a baseline correction algorithm.  The idea is that it
 #' contains all information needed to use an algorithm with the optimisation
 #' framework and the graphical user interface (but see Notes below).
 #' 
+#' @aliases baselineAlg-class
 #' 
 #' @docType class
+#' @slot name Short-name of the algorithm.  This must match
+#' the name of the object in the \code{baselineAlgorithms} list of
+#' algorithms, and is used throughout the code to identify the
+#' algorithm.  It should thus start with a letter and contain only
+#' letters, digits, underscores ("_") or dots (".").
+#' @slot description Description of the algorithm, typically
+#' the full name.  This will be used in the code to describe the
+#' algorith, so it should not be too long, and not contain newline characters.
+#' @slot funcName The name of the function used to estimate
+#' the baseline.  The function must take an argument
+#' \code{spectra}, and return a list with the estimated baselines
+#' (\code{baseline}) original spectra (\code{spectra}) and the
+#' corrected spectra (\code{corrected}).  It can also take other
+#' arguments (typically parameters) and return additional components
+#' in the list.
+#' @slot param A data frame with information about the
+#' parameters of the algorithm.  It should contain the following
+#' coloumns: \code{name} - the name of the parameter; \code{integer}
+#' - \code{TRUE} if the parameter only takes integer values,
+#' otherwise \code{FALSE}; \code{min} - the lower limit of allowed values;
+#' \code{incl.min} - \code{TRUE} if the lower limit is an allowed
+#' value, otherwise \code{FALSE}; \code{default} - the default value;
+#' \code{max} - the upper limit of allowed values; \code{incl.max} -
+#' \code{TRUE} if the upper limit is an allowed value, otherwise \code{FALSE}
+#' @section Methods:
+#' \describe{
+#' \item{description}{\code{signature(object = "baselineAlg")}: Extract
+#'   the \code{description} slot}
+#' \item{funcName}{\code{signature(object = "baselineAlg")}: Extract
+#'   the \code{funcName} slot }
+#' \item{name}{\code{signature(object = "baselineAlg")}: Extract
+#'   the \code{name} slot }
+#' \item{param}{\code{signature(object = "baselineAlg")}: Extract
+#'   the \code{param} slot}
+#' }
 #' @note The goal is that the optimisation framework and the GUI code should
 #' get all information about available baseline algorithms through a list of
 #' \code{baselineAlg} objects.  This will make it relatively simple to add new
@@ -378,8 +411,7 @@ setClass("baselineAlg",
 #' \code{\linkS4class{baselineAlg}} or \code{\linkS4class{baselineAlgTest}}
 #' 
 #' 
-#' @aliases funcName funcName-methods funcName,baselineAlg-method
-#' funcName,baselineAlgTest-method
+#' @aliases funcName funcName-methods funcName,baselineAlg-method funcName,baselineAlgTest-method
 #' @param object An object of class \code{\linkS4class{baselineAlg}} or
 #' \code{\linkS4class{baselineAlgTest}}
 #' @return The \code{funcName} slot of the object.
@@ -398,8 +430,7 @@ setMethod("funcName", "baselineAlg", function(object) object@funcName)
 #' @description Extraction methods specifically for objects of class
 #' \code{\linkS4class{baselineAlg}}
 #' 
-#' @aliases name name-methods name,baselineAlg-method description
-#' description-methods description,baselineAlg-method
+#' @aliases name name-methods name,baselineAlg-method description description-methods description,baselineAlg-method
 #' @param object Object of class \code{\linkS4class{baselineAlg}}
 #' @return The methods return the corresponding slot of the object.
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
@@ -409,12 +440,12 @@ setMethod("funcName", "baselineAlg", function(object) object@funcName)
 setGeneric("name", function(object) standardGeneric("name"))
 setMethod("name", "baselineAlg", function(object) object@name)
 
-#' @rdname rdbaselineAlg
+#' @rdname baselineAlg
 #' @export
 setGeneric("description", function(object) standardGeneric("description"))
 setMethod("description", "baselineAlg", function(object) object@description)
 
-#' @rdname baselineAlg
+#' @rdname param
 #' @export
 setMethod("param", "baselineAlg", function(object) object@param)
 
@@ -627,9 +658,26 @@ baselineAlgorithms <- list(
 #' 
 #' 
 #' @name baselineAlgTest
+#' @aliases baselineAlgTest-class
 #' @docType class
+#' @slot algorithm A \code{"baselineAlg"} object.  The baseline algorithm to test.
+#' @slot param A named list with parameter values to test.  All combinations of parameters are tested.
+#' @slot extraArgs A named list of extra parameters to the baseline algorithm.  These will be held fixed during the testing.
 #' @section Objects from the Class: Objects can be created by calls of the form
 #' \code{new("baselineAlgTest", ...)}.
+#' @section Methods:
+#' \describe{
+#' \item{algorithm}{\code{signature(object = "baselineAlgTest")}:
+#'   Extract the \code{algorithm} slot }
+#' \item{extraArgs}{\code{signature(object = "baselineAlgTest")}:
+#'   Extract the \code{extraArgs} slot ... }
+#' \item{funcName}{\code{signature(object = "baselineAlgTest")}:
+#'   Extract the \code{funcName} slot ... }
+#' \item{param}{\code{signature(object = "baselineAlgTest")}:
+#'   Extract the \code{param} slot }
+#' \item{runTest}{\code{signature(object = "baselineAlgTest")}: Run the
+#'   test.}
+#' }
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
 #' @seealso Classes \code{\linkS4class{baselineAlg}},
 #' \code{\linkS4class{baselineAlgResult}}.  Function \code{runTest}.
@@ -652,9 +700,34 @@ setClass("baselineAlgTest",
 #' 
 #' 
 #' @name baselineAlgResult
+#' @aliases baselineAlgResult-class
 #' @docType class
+#' @slot param A named list with the parameter values that were tested.  This includes both the predictor parameters and the baseline algorithm parameters.  All combinations of values are tested.
+#' @slot qualMeas A matrix of quality measure values for the different combinations of parameter values.  Each row corresponds to one prediction parameter value, and each coloumn to one combination of baseline parameters.
+#' @slot qualMeas.ind.min The index in \code{qualMeas} of the minimum quality measure value
+#' @slot minQualMeas The minimum quality measure value
+#' @slot param.ind.min A vector of indices into the elemets of \code{param} of the parameter values corresponding to the minimum quality measure value
+#' @slot param.min A list of the parameter values corresponding to the minimum quality measure value
+#' @slot qualMeasName The name of the quality measure
 #' @section Objects from the Class: Objects are typically created by running
 #' \code{runTest} on a \code{\linkS4class{baselineAlgTest}} object.
+#' @section Methods:
+#' \describe{
+#' \item{minQualMeas}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{minQualMeas} slot }
+#' \item{param}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{param} slot }
+#' \item{param.ind.min}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{param.ind.min} slot }
+#' \item{param.min}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{param.min} slot }
+#' \item{qualMeas}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{qualMeas} slot }
+#' \item{qualMeas.ind.min}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{qualMeas.ind.min} slot }
+#' \item{qualMeasName}{\code{signature(object = "baselineAlgResult")}:
+#'   Extract the \code{qualMeasName} slot }
+#' }
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
 #' @seealso Class \code{\linkS4class{baselineAlgTest}}, function
 #' \code{runTest}.
@@ -675,7 +748,7 @@ setClass("baselineAlgResult",
 
 ## Accessor functions:
 #' @name algorithm
-#' @aliases algorithm extraArgs
+#' @aliases algorithm extraArgs algorithm-methods algorithm,baselineAlgTest-method extraArgs-methods extraArgs,baselineAlgTest-method
 #' @title Extraction methods for "baselineAlgTest" objects
 #' @description
 #' Extraction methods specifically for objects of class \code{\linkS4class{baselineAlgTest}}
@@ -689,20 +762,7 @@ setGeneric("algorithm", function(object) standardGeneric("algorithm"))
 setMethod("algorithm", "baselineAlgTest", function(object) object@algorithm)
 
 ## One class for all algorithms
-#' @name baselineAlgTestMethods
-#' @title Extraction methods for "baselineAlgTest" objects
-#' 
-#' @description Extraction methods specifically for objects of class
-#' \code{\linkS4class{baselineAlgTest}}
-#' 
-#' 
-#' @aliases algorithm algorithm-methods algorithm,baselineAlgTest-method
-#' extraArgs extraArgs-methods extraArgs,baselineAlgTest-method
-#' @param object Object of class \code{\linkS4class{baselineAlgTest}}
-#' @return The corresponding slot
-#' @author Bjørn-Helge Mevik and Kristian Hovde Liland
-#' @seealso \code{\linkS4class{baselineAlgTest}}
-#' @keywords baseline spectra
+#' @rdname algorithm
 #' @export
 setGeneric("extraArgs", function(object) standardGeneric("extraArgs"))
 setMethod("extraArgs", "baselineAlgTest", function(object) object@extraArgs)
@@ -713,7 +773,7 @@ setMethod("extraArgs", "baselineAlgTest", function(object) object@extraArgs)
 #' @description Extraction methods that are specific for objects of class
 #' \code{\linkS4class{baselineAlgResult}}
 #' 
-#' @aliases param.ind.min qualMeas.ind.min
+#' @aliases param.ind.min qualMeas.ind.min param.ind.min-methods param.ind.min,baselineAlgResult-method qualMeas.ind.min-methods qualMeas.ind.min,baselineAlgResult-method
 #' @param object Object of class \code{\linkS4class{baselineAlgResult}}
 #' @return The corresponding slot
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
@@ -728,18 +788,22 @@ setMethod("qualMeas.ind.min", "baselineAlgResult", function(object) object@qualM
 setGeneric("param.ind.min", function(object) standardGeneric("param.ind.min"))
 setMethod("param.ind.min", "baselineAlgResult", function(object) object@param.ind.min)
 
+#' @rdname param
 setMethod("param", "baselineAlgTest", function(object) object@param)
 setMethod("funcName", "baselineAlgTest",
           function(object) funcName(object@algorithm))
+#' @rdname param
 setMethod("param", "baselineAlgResult", function(object) object@param)
+#' @rdname qualMeas
 setMethod("minQualMeas", "baselineAlgResult", function(object) object@minQualMeas)
+#' @rdname qualMeas
 setMethod("param.min", "baselineAlgResult", function(object) object@param.min)
+#' @rdname qualMeas
 setMethod("qualMeasName", "baselineAlgResult", function(object) object@qualMeasName)
 
 
 ## A method for doing the algorithm testing
-# #' @rdname baselineAlgTest
-# #' @export
+#' @rdname runTest
 setMethod("runTest", "baselineAlgTest",
           function(object, X, y, predictionTest, postproc, verbose = FALSE) {
             ## Build a data frame with all parameter combinations:
@@ -799,8 +863,7 @@ setMethod("runTest", "baselineAlgTest",
 ### Method for extracting test result values from a baseline algorithm
 ### test
 ###
-# #' @rdname baselineAlgResultMethods
-# #' @export
+#' @rdname qualMeas
 setMethod("qualMeas", "baselineAlgResult",
           function(object, ..., MIN, AVG, DEFAULT = c("all", "cond.min", "overall.min", "avg")) {
             DEFAULT <- match.arg(DEFAULT)
@@ -991,6 +1054,15 @@ setMethod("qualMeas", "baselineAlgResult",
 #' progress information.  Default is \code{FALSE}
 #' @param cleanTmp Logical, specifying whether the intermediate files should be
 #' deleted when the optimisation has finished.  Default is \code{FALSE}
+#' @param object An \code{mvr} object, as returned by \code{pls::plsr}.  Internal
+#' helper used by \code{doOptim}; not meant to be called directly.
+#' @param estimate Character vector of estimate types, passed on from \code{pls::MSEP}.
+#' @param newdata Optional new data used to calculate the validation statistics.
+#' @param ncomp Vector of the number of components to calculate statistics for.
+#' @param comps Alternative to \code{ncomp}, a vector of specific components to use.
+#' @param intercept Logical, whether statistics for the intercept-only model should be included.
+#' @param se Logical, whether to calculate standard errors.
+#' @param \dots Other arguments, currently unused by \code{mvrValstats}.
 #' @return A list with components \item{baselineTests}{The \code{baselineTests}
 #' argument} \item{results}{A list with the \code{baselineAlgResult} objects
 #' for each baseline test} \item{minQualMeas}{The minimum quality measure
@@ -998,6 +1070,8 @@ setMethod("qualMeas", "baselineAlgResult",
 #' minimum quality measure value} \item{param.min}{A list with the parameter
 #' values corresponding to the minimum quality measure value}
 #' @examples
+#' \donttest{
+#' if (requireNamespace("pls", quietly = TRUE)) {
 #' data(milk)
 #' X <- milk$spectra[,-1]
 #' y <- milk$spectra[,1]
@@ -1008,7 +1082,10 @@ setMethod("qualMeas", "baselineAlgResult",
 #'     X, y, 
 #'     new("PLSRTest", 
 #'         ncomp = 10, 
-#'         cvsegments = cvsegments(N=45, k=5)))
+#'         cvsegments = pls::cvsegments(N=45, k=5)),
+#'     cleanTmp = TRUE)
+#' }
+#' }
 #' @author Bjørn-Helge Mevik and Kristian Hovde Liland
 #' @seealso
 #' \code{\linkS4class{baselineAlgTest}},\code{\linkS4class{predictionTest}}
@@ -1083,6 +1160,8 @@ overall.min <- function(results) {
 
 ## The function mvrValstats has been copied (2013-08-10) from package pls (overlapping authors)
 ## because eval(parent.frame()) seems to break call to pls::msep.
+#' @rdname doOptim
+#' @export
 mvrValstats <- function (object, estimate, newdata, ncomp = 1:object$ncomp, 
                          comps, intercept = cumulative, se = FALSE, ...) 
 {

@@ -1,13 +1,13 @@
 #' @title Customized baseline correction
 #' 
-#' @description This is an implementation of the customized baseline correction suggested by
-#' Liland et al. 2011 for local changes in baseline flexibility.
-#' 
-#' @details This function rescales spectrum abscissa by use of \code{breaks} and
+#' @description This function rescales spectrum abscissa by use of \code{breaks} and
 #' \code{gaps} before baseline correction. The effect is that the chosen
 #' baseline correction algorithm and paramters will have varying effects along
 #' the spectra, effectively giving local control of the amount of
 #' rigidity/flexibility of the estimated baseline.
+#' 
+#' @details This is an implementation of the customized baseline correction suggested by
+#' Liland et al. 2011 for local changes in baseline flexibility.
 #' 
 #' @param spectra Matrix with spectra in rows.
 #' @param breaks Vector of locations of break points between sections of

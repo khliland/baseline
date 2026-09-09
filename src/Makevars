@@ -1,1 +1,1 @@
-PKG_LIBS = $(BLAS_LIBS) -llapack -lgfortran
+PKG_LIBS = $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)

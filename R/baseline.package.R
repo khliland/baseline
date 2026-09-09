@@ -9,7 +9,6 @@
 #' details.
 #' 
 #' @name baseline-package
-#' @docType package
 #' @author Kristian Hovde Liland and Bjørn-Helge Mevik
 #' 
 #' Maintainer: Kristian Hovde Liland <kristian.liland@nmbu.no>
@@ -62,4 +61,5 @@
 #'   baselineGUI(milk$spectra)
 #' }
 #' 
-NULL
+#' @useDynLib baseline, .registration = TRUE
+"_PACKAGE"
