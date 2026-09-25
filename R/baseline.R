@@ -31,7 +31,7 @@
 #' \item{getSpectra}{\code{signature(object = "baseline")}: Extract the
 #'   original spectra}
 #' }
-#' @section Warning: In a future versoion, one of the slots might be
+#' @section Warning: In a future version, one of the slots might be
 #' removed from the class definition and calculated on the fly instead,
 #' in order to save space.  Therefore, \emph{do} use the extractor
 #' functions (\code{getSpectra}, \code{getBaseline} and
